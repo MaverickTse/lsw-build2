@@ -1,6 +1,5 @@
 # lsw-build2
 MSYS2 Build scripts for building [__L-Smash (32bit)__](https://github.com/l-smash/l-smash) and [__L-Smash Works__](https://github.com/VFR-maniac/L-SMASH-Works/tree/master/AviUtl). 
-Not building AviSynth Plugin however.
 
 
 ## Details
@@ -22,7 +21,9 @@ Use the **Download Zip** button on the right of GitHub page.
   7. `./inst_base.sh` Exit MSYS2 when finished
   8. Run **mingw32_shell.bat**
   9. `./buildmypkg.sh`
-  10. Retrieve your package at _MSYS2ROOT_/ReadyToUse32
+  10. If you have VS2012 or VS2013 and want to build LSW for AviSynth, run `./bld_lsw_avs.sh`
+  11. Retrieve your package at _MSYS2ROOT_/ReadyToUse32
+  
 
 On **subsequent rebuild**, just run `./buildmypkg.sh`.
 **DO NOT RUN** `pacman -Syu` without first running `./coreupdate.sh` and **restarting MSYS2!**
