@@ -11,7 +11,17 @@ This set of scripts should be faster than the [MSYS version](https://github.com/
 ## How to Download
 Use the **Download Zip** button on the right of GitHub page.
 
-## Usage Guide
+## DEAD SIMPLE First-time Build Guide
+  1. Download this package and extract to some empty folder
+  2. Double-Click on **FirstAutomatedBld.vbs**
+  3. When prompted, click OK. Wait a moment, then close the MSYS2 Window
+  4. Go to watch an episode of animation...
+  5. It should popup a dialog showing the time taken to build
+  6. Close the dialog, and get your packages in _MSYS2ROOT_\ReadyToUse32
+  7. **P.S.:** _The AviSynth plugin will only be built if you have either VS2012 or VS2013 installed_
+  
+  
+## Usage Guide (Manual)
   1. Install [MSYS2](http://sourceforge.net/projects/msys2/)
   2. First-time startup using **msys2_shell.bat**
   3. Close MSYS2
@@ -25,6 +35,6 @@ Use the **Download Zip** button on the right of GitHub page.
   11. Retrieve your package at _MSYS2ROOT_/ReadyToUse32
   
 
-On **subsequent rebuild**, just run `./buildmypkg.sh`.
+On **subsequent rebuild**, launch MSYS2 using **mingw32_shell.bat**, then run `./buildmypkg.sh`.
 **DO NOT RUN** `pacman -Syu` without first running `./coreupdate.sh` and **restarting MSYS2!**
   
