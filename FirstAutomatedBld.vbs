@@ -55,7 +55,7 @@ Set rMatches = myregex.Execute(html)
 url = rMatches.Item(0).Submatches(0)
 'Download MSYS2
 If (Not WshFS.FileExists("msys2.tar.xz")) Then
-cmd1 = """" & WshShell.CurrentDirectory & "\wget.exe" & """" &" " & "" & url & "" & " -O msys2.tar.xz || del msys2.tar.xz" 
+cmd1 = """" & WshShell.CurrentDirectory & "\wget.exe" & """" &" " & "" & url & "" & " -O msys2.tar.xz" 
 'WScript.Echo(cmd1)
 Call WshShell.Run(cmd1, 1, True)
 End if
@@ -63,7 +63,7 @@ End if
 'DL 7-zip CLI
 If (Not WshFS.FileExists("7za.exe")) Then
 url = "http://downloads.sourceforge.net/sevenzip/7za920.zip"
-cmd1 = """" & WshShell.CurrentDirectory & "\wget.exe" & """" &" " & "" & url & "" & " -O 7za920.zip || del 7za920.zip"
+cmd1 = """" & WshShell.CurrentDirectory & "\wget.exe" & """" &" " & "" & url & "" & " -O 7za920.zip"
 'WScript.Echo(cmd1)
 Call WshShell.Run(cmd1, 1, True)
 End if
@@ -108,7 +108,7 @@ Loop
 home_path = script_folder & "\msys64\home\" & WshSysEnv("USERNAME")
 'Copy shell scripts to home
 cmd1 = "copy /Y /B " & "" & script_folder & "\*.sh" & "" & " " & "" & home_path & "\" & ""
-WScript.Echo(cmd1)
+'WScript.Echo(cmd1)
 Call WshShell.Run("%comspec% /c " & cmd1, 1, True)
 'core update
 cmd1 = "" & mintty_path & "" & " -i /msys2.ico /usr/bin/bash --login " & "" & home_path & "\coreupdate.sh" & ""
