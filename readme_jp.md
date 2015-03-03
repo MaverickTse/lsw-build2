@@ -27,26 +27,27 @@ GitHubの画面右下にある **Download Zip** ボタンを使ってくださ�
   8. **(追記)**AviSynth pluginは、Visual Studio 2012 または Visual Stusio 2013がインストールされている時のみビルドされます。
 
 >Visual Studio Community 2013 Update 4
+
 >http://www.visualstudio.com/ja-jp/downloads/download-visual-studio-vs#d-community-expando
   
-## 注意！
-`./coreupdate.sh`を実行し、**MSYS2のコンソールを再起動する**まで、`pacman -Syu` を***実行してはならない
-
 
 ## 初回のビルド方法 (半自動版)
   1. [MSYS2](http://sourceforge.net/projects/msys2/)をインストールする（[msys2-base-x86_64-[date].tar.xz](http://sourceforge.net/projects/msys2/files/Base/x86_64/)を解凍するだけ）。
   2. **msys2_shell.bat** を実行する。
   3. 終わったらMSYS2のコンソールを終了する
-  4. スクリプト群を `_MSYS2ROOT_/home/_UserName_/` にコピーする。
+  4. スクリプト群を `MSYS2ROOT/home/UserName/` にコピーする。
   5. 再び **msys2_shell.bat** を実行する。
   6. `./coreupdate.sh`と打ち実行、 **終了したら MSYS2のコンソールを再起動する**
   7. `./inst_base.sh` と打ち実行、 終了したら MSYS2のコンソールを閉じる
   8.  **mingw32_shell.bat** を実行する。**msys2_shell.batではない！** 
   9. `./buildmypkg.sh`と打ち実行する。
-  10. もし VS2012 か VS2013がインストールされており、L-SMASH WorksのAviSynth向けプラグイン(LSMASHSource.dll)をビルドしたい場合は、`./bld_lsw_avs.sh`と打ち実行
-  11. `_MSYS2ROOT_\ReadyToUse32`にビルド生成物が有ります。
+  10. VS2012 か VS2013がインストールされていて、L-SMASH WorksのAviSynth向けプラグイン(LSMASHSource.dll)をビルドしたい場合は、`./bld_lsw_avs.sh`と打ち実行
+  11. `MSYS2ROOT\ReadyToUse32`にビルド生成物が有ります。
   
   
+## 注意！
+`./coreupdate.sh`を実行し、**MSYS2のコンソールを再起動する**まで、`pacman -Syu` を**実行してはならない**。
+
 ## リビルドの方法
   1. **mingw32_shell.bat** を実行する。
   2. `./buildmypkg.sh`と打ち実行する。
