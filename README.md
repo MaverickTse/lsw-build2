@@ -34,7 +34,10 @@ Use the **Download Zip** button on the right of GitHub page.
   10. If you have VS2012 or VS2013 and want to build LSW for AviSynth, run `./bld_lsw_avs.sh`
   11. Retrieve your package at _MSYS2ROOT_/ReadyToUse32
   
-
-On **subsequent rebuild**, launch MSYS2 using **mingw32_shell.bat**, then run `./buildmypkg.sh`.
+## Caution
 **DO NOT RUN** `pacman -Syu` without first running `./coreupdate.sh` and **restarting MSYS2!**
+
+## How to Rebuild
+  1. Run **mingw32_shell.bat**
+  2. `./buildmypkg.sh`
   
