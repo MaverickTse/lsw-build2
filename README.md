@@ -14,11 +14,12 @@ Use the **Download Zip** button on the right of GitHub page.
 ## DEAD SIMPLE First-time Build Guide
   1. Download this package and extract to some empty folder
   2. Double-Click on **FirstAutomatedBld.vbs**
-  3. When prompted, click OK. Wait a moment, then close the MSYS2 Window
-  4. Go to watch an episode of animation...
-  5. It should popup a dialog showing the time taken to build
-  6. Close the dialog, and get your packages in _MSYS2ROOT_\ReadyToUse32
-  7. **P.S.:** _The AviSynth plugin will only be built if you have either VS2012 or VS2013 installed_
+  3. Select a build target by typing 0, 1 or 2 then ENTER. Type 3 to Abort.
+  4. When prompted, click OK. Wait a moment, then close the MSYS2 Window
+  5. Go to watch 2 episodes of animation...
+  6. It should popup a dialog showing the time taken to build
+  7. Close the dialog, and get your packages in _MSYS2ROOT_\ReadyToUse32 and _MSYS2ROOT_\ReadyToUse64
+  8. **P.S.:** _The AviSynth plugin will only be built if you have either VS2012 or VS2013 installed_
   
   
 ## Usage Guide (Manual)
@@ -38,6 +39,6 @@ Use the **Download Zip** button on the right of GitHub page.
 **DO NOT RUN** `pacman -Syu` without first running `./coreupdate.sh` and **restarting MSYS2!**
 
 ## How to Rebuild
-  1. Run **mingw32_shell.bat**
-  2. `./buildmypkg.sh`
+  1. Run **mingw32_shell.bat** for 32bit target, **mingw64_shell.bat** for 64bit target
+  2. `./buildmypkg.sh` or `./buildmypkg_64.sh`
   
