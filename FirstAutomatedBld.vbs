@@ -7,12 +7,53 @@ Dim script_folder
 Dim url
 Dim cmd1
 Dim home_path
+Dim strInput
+Dim platform
+
+'Let user to choose the build target(s), 32bit, 64bit or both
+strInput= InputBox("Which target to build?" & vbCrlf & "[0]:32-bit" & vbCrlf &"[1]:64-bit" & vbCrlf & "[2]: Both" & vbCrlf & "[3]: Quit","Select platform (All Win-Static)", "0")
+  If(Not IsEmpty(strInput)) And (Not IsNull(strInput)) Then
+  platform= CInt(strInput)
+  If (platform < 0) Then platform=0 End if
+  If (platform > 2) Then WScript.Quit 0 End if
+  Else
+  platform=0
+  End If
 
 time_i= Now() 'benchmark timer
 
 Set WshShell =  CreateObject("WScript.Shell")
 Set WshProcEnv = WshShell.Environment("Process")
 Set WshFS = CreateObject("Scripting.FileSystemObject")
+
+'Check Disk Space
+Set drive = WshFS.GetDrive(WshFS.GetDriveName(WScript.ScriptFullName))
+'WScript.Echo "FreeSpace: " & FormatNumber(drive.FreeSpace/1048576, 0) & "MB"
+driveMB = drive.FreeSpace/1048576
+singleBldSzie = 2048 '2GB
+doubleBldSize = 3072 '3GB
+If (platform < 2) Then
+  if (driveMB < singleBldSzie) Then
+    WScript.Echo "Insufficient Disk Space!" & vbCrlf & "Requires at least 2GB!"
+	Set drive = nothing
+	Set WshFS = nothing
+	Set WshProcEnv = nothing
+	Set WshShell = nothing
+	WScript.Quit 1
+  end if	
+Else
+  if (driveMB < doubleBldSize) Then
+    WScript.Echo "Insufficient Disk Space!" & vbCrlf & "Requires at least 3GB!"
+	Set drive = nothing
+	Set WshFS = nothing
+	Set WshProcEnv = nothing
+	Set WshShell = nothing
+    WScript.Quit 1
+  end if	
+End if
+
+Set drive = nothing  
+	
 
 'Check OS bitness
 process_architecture= WshProcEnv("PROCESSOR_ARCHITECTURE") 
@@ -138,6 +179,9 @@ Do While boolRunning
 Loop
 
 'Starts building
+REM *********** Win32 *****************
+If (platform = 0) Or (platform = 2) Then
+
 cmd1 = "" & mintty_path & "" & " --hold error -i /msys2.ico /usr/bin/bash --login " & "" & home_path & "\buildmypkg.sh" & ""
 WshSysEnv("MSYSTEM") = "MINGW32" 'Use Mingw32 toolchain
 Call WshShell.Run(cmd1, 1, True) 'RUN!
@@ -169,6 +213,47 @@ Do While boolRunning
   Set colProc = Nothing
   WScript.Sleep 500
 Loop
+End if
+
+End if
+
+REM *********** Win64 *****************
+If (platform = 1) Or (platform = 2) Then
+
+cmd1 = "" & mintty_path & "" & " --hold error -i /msys2.ico /usr/bin/bash --login " & "" & home_path & "\buildmypkg_64.sh" & ""
+WshSysEnv("MSYSTEM") = "MINGW64" 'Use Mingw32 toolchain
+Call WshShell.Run(cmd1, 1, True) 'RUN!
+boolRunning = False 'hold
+Do While boolRunning
+  Set colProc = oWMISvc.ExecQuery("SELECT * FROM Win32_Process WHERE Name='" & "mintty.exe" & "'")
+  boolRunning = False
+  For Each oProc In colProc
+    boolRunning = True
+  Next
+  Set colProc = Nothing
+  WScript.Sleep 500
+Loop
+'============ AviSynth in 64 bit mode somehow needs libeinpthread-1.dll ======================
+hasVS2013_64 = WshFS.FileExists("C:/Program Files (x86)/Microsoft Visual Studio 12.0/Common7/Tools/vsvars32.bat")
+hasVS2013_32 = WshFS.FileExists("C:/Program Files/Microsoft Visual Studio 12.0/Common7/Tools/vsvars32.bat")
+hasVS2012_64 = WshFS.FileExists("C:/Program Files (x86)/Microsoft Visual Studio 11.0/Common7/Tools/vsvars32.bat")
+hasVS2012_32 = WshFS.FileExists("C:/Program Files/Microsoft Visual Studio 11.0/Common7/Tools/vsvars32.bat")
+If (hasVS2013_64 Or hasVS2013_32 Or hasVS2012_64 Or hasVS2012_32) Then
+cmd1 = "" & mintty_path & "" & " -i /msys2.ico /usr/bin/bash --login " & "" & home_path & "\bld_lsw_avs_64.sh" & ""
+WshSysEnv("MSYSTEM") = "MINGW64" 'Use Mingw64 toolchain
+Call WshShell.Run(cmd1, 1, True) 'Try to build LSW for AviSynth
+boolRunning = False 'hold
+Do While boolRunning
+  Set colProc = oWMISvc.ExecQuery("SELECT * FROM Win32_Process WHERE Name='" & "mintty.exe" & "'")
+  boolRunning = False
+  For Each oProc In colProc
+    boolRunning = True
+  Next
+  Set colProc = Nothing
+  WScript.Sleep 500
+Loop
+End if
+
 End if
 Rem ***************** Clean up *************************
 Set oWMISvc = Nothing
