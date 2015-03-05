@@ -19,11 +19,12 @@ GitHubの画面右下にある **Download Zip** ボタンを使ってくださ�
 ## 初回のビルド方法（自動化版）
   1. 「Download方法」にしたがってダウンロードし、zipファイルを解凍、ビルドツールを置きたい場所に配置
   2. **FirstAutomatedBld.vbs**　をダブルクリックする
-  3. 途中ダイアログが出るので「OK」をクリックする。
-  4. しばらくすると「CAUTION」と大きく書かれた画面にコンソールがなるのでウィンドウを閉じる
-  5. 終了するとビルドにかかった時間がダイアログに表示されます。「OK」で閉じます。
-  6. `_MSYS2ROOT_\ReadyToUse32`にビルド生成物が有ります。
-  7. **(追記)**AviSynth pluginは、Visual Studio 2012 または Visual Stusio 2013がインストールされている時のみビルドされます。
+  3. [0]:32-bit [1]:64-bit [2]: 両方 を入力してビルドターゲットを選択します。ここで終了するには 3 を入力します。
+  4. 途中ダイアログが出るので「OK」をクリックする。しばらくすると「CAUTION」と大きく書かれた画面にコンソールがなるのでウィンドウを閉じる
+  5. ffmpegやL-SMASH/L-SMASH Worlsのビルドが始まります。ビルドにはしばらくかかります。
+  6. 終了するとビルドにかかった時間がダイアログに表示されます。「OK」で閉じます。
+  7. `_MSYS2ROOT_\ReadyToUse32`にビルド生成物が有ります。
+  8. **(追記)**AviSynth pluginは、Visual Studio 2012 または Visual Stusio 2013がインストールされている時のみビルドされます。
 
 >Visual Studio Community 2013 Update 4
 
@@ -38,9 +39,9 @@ GitHubの画面右下にある **Download Zip** ボタンを使ってくださ�
   5. 再び **msys2_shell.bat** を実行する。
   6. `./coreupdate.sh`と打ち実行、 **終了したら MSYS2のコンソールを再起動する**
   7. `./inst_base.sh` と打ち実行、 終了したら MSYS2のコンソールを閉じる
-  8.  **mingw32_shell.bat** を実行する。**msys2_shell.batではない！** 
-  9. `./buildmypkg.sh`と打ち実行する。
-  10. VS2012 か VS2013がインストールされていて、L-SMASH WorksのAviSynth向けプラグイン(LSMASHSource.dll)をビルドしたい場合は、`./bld_lsw_avs.sh`と打ち実行
+  8.  32bit向けには**mingw32_shell.bat** を、64bit向けには**mingw64_shell.bat**を実行する。**msys2_shell.batではない！** 
+  9.  32bit向けには`./buildmypkg.sh`、64bit向けには`./buildmypkg_64.sh`と打ち実行する。
+  10. VS2012 か VS2013がインストールされていて、L-SMASH WorksのAviSynth向けプラグイン(LSMASHSource.dll)をビルドしたい場合は、32bit向けには`./bld_lsw_avs.sh`、64bit向けには`./bld_lsw_avs_64.sh`と打ち実行
   11. `MSYS2ROOT\ReadyToUse32`にビルド生成物が有ります。
   
   
@@ -48,6 +49,6 @@ GitHubの画面右下にある **Download Zip** ボタンを使ってくださ�
 `./coreupdate.sh`を実行し、**MSYS2のコンソールを再起動する**まで、`pacman -Syu` を**実行してはならない**。
 
 ## リビルドの方法
-  1. **mingw32_shell.bat** を実行する。
-  2. `./buildmypkg.sh`と打ち実行する。
+  1. 32bit向けには**mingw32_shell.bat** を、64bit向けには**mingw64_shell.bat**を実行する。**msys2_shell.batではない！** 
+  2. 32bit向けには`./buildmypkg.sh`、64bit向けには`./buildmypkg_64.sh`と打ち実行する。
 
