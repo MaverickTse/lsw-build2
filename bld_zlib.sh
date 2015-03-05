@@ -32,7 +32,7 @@ pushd contrib/minizip > /dev/null
 autoreconf -fi
 
 CFLAGS+=" -DHAVE_BZIP2"
-./configure --prefix="/mingw32" --enable-demos --disable-shared --enable-static LIBS="-lbz2"
+./configure --prefix="/mingw32" --disable-shared --enable-static LIBS="-lbz2"
 make -j$(nproc)
 popd > /dev/null
 cd ~/zlib
@@ -41,5 +41,3 @@ pushd ~/zlib/contrib/minizip > /dev/null
 make install
 popd > /dev/null
 
-#CFLAGS="-static" make -f win32/Makefile.gcc
-#BINARY_PATH="/mingw32/bin" INCLUDE_PATH="/mingw32/include" LIBRARY_PATH="/mingw32/lib" make install -f win32/Makefile.gcc
