@@ -13,13 +13,13 @@ if [ ! -f openjpeg-1.5.2.tar.gz ]; then
     patch -p1 -t -N < mingw-install-pkgconfig-files.patch
     patch -p1 -t -N < versioned-dlls-mingw.patch
 fi
-
+make clean
 /mingw32/bin/cmake \
     -G"MSYS Makefiles" \
     -DCMAKE_INSTALL_PREFIX="$(cygpath -wa /)mingw32" \
     -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_TESTING:BOOL=OFF \
-    -DCMAKE_SYSTEM_PREFIX_PATH="$(cygpath -wa /)\mingw32" \
+    -DCMAKE_SYSTEM_PREFIX_PATH="$(cygpath -wa /)mingw32" \
     -DOPENJPEG_INSTALL_SUBDIR="openjpeg/1.5.2" \
 	-DBUILD_THIRDPARTY:BOOL=ON \
     -DBUILD_MJ2=ON \
@@ -28,6 +28,5 @@ fi
 	-DBUILD_SHARED_LIBS=OFF
     
 
-make clean
-make -j$(nproc)
-make install
+
+make -j$(nproc) && make install
