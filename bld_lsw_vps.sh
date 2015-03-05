@@ -11,5 +11,5 @@ git pull -v --progress
 cd VapourSynth
 ./configure --prefix="/mingw32" --extra-ldflags="-static"
 make clean
-make -j$(nproc)
+make -j$(nproc) && make install
 
