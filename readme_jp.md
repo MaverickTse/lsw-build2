@@ -1,5 +1,5 @@
 ﻿# lsw-build2
-MSYS2をつかって、[__L-Smash (32bit)__](https://github.com/l-smash/l-smash) と [__L-Smash Works__](https://github.com/VFR-maniac/L-SMASH-Works/tree/master/AviUtl)を簡単にビルドするスクリプト群です。 
+MSYS2をつかって、[__L-Smash__](https://github.com/l-smash/l-smash) と [__L-Smash Works__](https://github.com/VFR-maniac/L-SMASH-Works/tree/master/AviUtl)を簡単にビルドするスクリプト群です。 
 
 
 ## 詳細

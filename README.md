@@ -1,5 +1,5 @@
 # lsw-build2
-MSYS2 Build scripts for building [__L-Smash (32bit)__](https://github.com/l-smash/l-smash) and [__L-Smash Works__](https://github.com/VFR-maniac/L-SMASH-Works/tree/master/AviUtl). 
+MSYS2 Build scripts for building [__L-Smash__](https://github.com/l-smash/l-smash) and [__L-Smash Works__](https://github.com/VFR-maniac/L-SMASH-Works/tree/master/AviUtl). 
 
 
 ## Details
@@ -20,6 +20,8 @@ Use the **Download Zip** button on the right of GitHub page.
   6. It should popup a dialog showing the time taken to build
   7. Close the dialog, and get your packages in _MSYS2ROOT_\ReadyToUse32 and _MSYS2ROOT_\ReadyToUse64
   8. **P.S.:** _The AviSynth plugin will only be built if you have either VS2012 or VS2013 installed_
+  
+  [VS2013 Community Edition Info](https://www.visualstudio.com/en-us/news/vs2013-community-vs.aspx)
   
   
 ## Usage Guide (Manual)
