@@ -15,6 +15,6 @@ if [ ! -f bzip2-1.0.6.tar.gz ]; then
     patch -p1 -t -N < bzip2-1.0.6-progress.all.patch
 	autoreconf -fi
 fi
-CFLAGS="-static" ./configure --prefix="/mingw64"
+./configure --prefix="/mingw64"
 make clean
 make -j$(nproc) && make install

@@ -9,7 +9,8 @@ if [ ! -d .git ]; then
 fi
 git pull -v --progress
 ./configure --prefix="/mingw32" --target-os=mingw32 \
-  --extra-cflags="-fexcess-precision=fast -I/mingw32/include/openjpeg-1.5" \
+  --extra-cflags="-m32 -fexcess-precision=fast -I/mingw32/include/openjpeg-1.5" \
+  --extra-ldflags="-m32" \
   --enable-static --enable-avresample --enable-memalign-hack \
   --enable-pthreads --enable-runtime-cpudetect --enable-gpl \
   --enable-version3 --enable-libopus --enable-libopenjpeg \
