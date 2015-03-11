@@ -9,7 +9,10 @@ MSYS2をつかって、[__L-Smash__](https://github.com/l-smash/l-smash) と [__
 マルチコアCPU（近年のほとんどのCPU）では[MSYSを利用する物](https://github.com/MaverickTse/lw-build)より高速にビルドできます。
 
 ## Download方法
-GitHubの画面右下にある **Download Zip** ボタンを使ってください。
+GitHubの画面右下
+>https://github.com/MaverickTse/lsw-build2
+
+にある **Download Zip** ボタンを使ってください。
 もしすでにgitを利用できる環境をお持ちでしたら、
 >`git clone https://github.com/MaverickTse/lsw-build2.git`
 
