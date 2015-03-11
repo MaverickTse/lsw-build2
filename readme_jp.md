@@ -1,5 +1,6 @@
 ﻿# lsw-build2
 MSYS2をつかって、[__L-Smash__](https://github.com/l-smash/l-smash) と [__L-Smash Works__](https://github.com/VFR-maniac/L-SMASH-Works/tree/master/AviUtl)を簡単にビルドするスクリプト群です。 
+コンパイラーにはTDM64-GCCを使用します。
 
 
 ## 詳細
@@ -20,14 +21,18 @@ GitHubの画面右下
 
 
 ## 初回のビルド方法（自動化版）
+### 注意
+- 通信回線が安定している状態で実行してください。失敗した場合は**msys2.tar.xz**を削除してから**FirstAutomatedBld.vbs**を再実行してください。
+### 手順
   1. 「Download方法」にしたがってダウンロードし、zipファイルを解凍、ビルドツールを置きたい場所に配置
   2. **FirstAutomatedBld.vbs**　をダブルクリックする
   3. [0]:32-bit [1]:64-bit [2]: 両方 を入力してビルドターゲットを選択します。ここで終了するには 3 を入力します。
   4. 途中ダイアログが出るので「OK」をクリックする。しばらくすると「CAUTION」と大きく書かれた画面にコンソールがなるのでウィンドウを閉じる
-  5. ffmpegやL-SMASH/L-SMASH Worlsのビルドが始まります。ビルドにはしばらくかかります。
+  5. ffmpegやL-SMASH/L-SMASH Worlsのビルドが始まります。ビルドにはしばらくかかります(Intel Core i5-4200Mでは45分以上)。
   6. 終了するとビルドにかかった時間がダイアログに表示されます。「OK」で閉じます。
   7. `_MSYS2ROOT_\ReadyToUse32`にビルド生成物が有ります。
   8. **(追記)**AviSynth pluginは、Visual Studio 2012 または Visual Stusio 2013がインストールされている時のみビルドされます。
+  9. **(追記)** 32bit版と64bit版のFFmpeg.exeはそれぞれ`msys64/mingw32/bin`と`msys64/mingw64/bin`にあります。
 
 >Visual Studio Community 2013 Update 4
 
@@ -35,6 +40,9 @@ GitHubの画面右下
   
 
 ## 初回のビルド方法 (半自動版)
+### 注意！
+- `./coreupdate.sh`を実行し、**MSYS2のコンソールを再起動する**まで、`pacman -Syu` を**決して実行しないでください**。
+### 手順
   1. [MSYS2](http://sourceforge.net/projects/msys2/)をインストールする（[msys2-base-x86_64-[date].tar.xz](http://sourceforge.net/projects/msys2/files/Base/x86_64/)を解凍するだけ）。
   2. **msys2_shell.bat** を実行する。
   3. 終わったらMSYS2のコンソールを終了する
@@ -48,9 +56,6 @@ GitHubの画面右下
   11. `MSYS2ROOT\ReadyToUse32`にビルド生成物が有ります。
   
   
-## 注意！
-`./coreupdate.sh`を実行し、**MSYS2のコンソールを再起動する**まで、`pacman -Syu` を**実行してはならない**。
-
 ## リビルドの方法
   1. 32bit向けには**mingw32_shell.bat** を、64bit向けには**mingw64_shell.bat**を実行する。**msys2_shell.batではない！** 
   2. 32bit向けには`./buildmypkg.sh`、64bit向けには`./buildmypkg_64.sh`と打ち実行する。
