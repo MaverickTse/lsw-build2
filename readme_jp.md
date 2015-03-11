@@ -6,7 +6,7 @@ MSYS2をつかって、[__L-Smash__](https://github.com/l-smash/l-smash) と [__
 これは"Opus audio"と"Motion JPEG"をサポートするL-Smash と L-Smash Worksを半自動的にビルドするシェルスクリプトのセットです。
 下記に示す手順を守れば生成物（バイナリ）は静的(**static**)になります。
 ビルドのために必要となるMSYS2の環境を構築するスクリプトも付属しています（OSのPATHは変更しません）。
-マルチコアCPU（近年のほとんどのCPU）では[MSYSを利用する物](https://github.com/MaverickTse/lw-build)より高速にビルドできます。
+マルチコアCPU（近年のほとんどのCPU）では[MSYS2を利用する物](https://github.com/MaverickTse/lw-build)より高速にビルドできます。
 
 ## Download方法
 GitHubの画面右下
