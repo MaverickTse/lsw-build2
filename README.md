@@ -1,5 +1,7 @@
-# lsw-build2
+# lsw-build2(TDM)
 MSYS2 Build scripts for building [__L-Smash__](https://github.com/l-smash/l-smash) and [__L-Smash Works__](https://github.com/VFR-maniac/L-SMASH-Works/tree/master/AviUtl). 
+
+**This branch use the TDM64-GCC toolchain instead of the one from pacman**
 
 
 ## Details

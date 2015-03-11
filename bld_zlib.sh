@@ -26,7 +26,7 @@ git am ../../011-Add-no-undefined-to-link-to-enable-build-shared-vers.patch
 git am ../../012-Add-bzip2-library-to-pkg-config-file.patch
 
 cd ../../
-CFLAGS="-static" ./configure --prefix="/mingw32" --static
+CFLAGS="-m32" LDFLAGS="-m32" ./configure --prefix="/mingw32" --static
 make -j$(nproc) all
 pushd contrib/minizip > /dev/null
 autoreconf -fi

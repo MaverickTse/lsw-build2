@@ -14,7 +14,7 @@ if [ ! -f openjpeg-1.5.2.tar.gz ]; then
     patch -p1 -t -N < versioned-dlls-mingw.patch
 fi
 make clean
-/mingw64/bin/cmake \
+cmake \
     -G"MSYS Makefiles" \
     -DCMAKE_INSTALL_PREFIX="$(cygpath -wa /)mingw64" \
     -DCMAKE_BUILD_TYPE=Release \
