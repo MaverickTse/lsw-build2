@@ -1,5 +1,6 @@
 ﻿# lsw-build2
 MSYS2をつかって、[__L-Smash__](https://github.com/l-smash/l-smash) と [__L-Smash Works__](https://github.com/VFR-maniac/L-SMASH-Works/tree/master/AviUtl)を簡単にビルドするスクリプト群です。 
+
 コンパイラーにはTDM64-GCCを使用します。
 
 
@@ -23,6 +24,7 @@ GitHubの画面右下
 ## 初回のビルド方法（自動化版）
 ### 注意
 - 通信回線が安定している状態で実行してください。失敗した場合は**msys2.tar.xz**を削除してから**FirstAutomatedBld.vbs**を再実行してください。
+
 ### 手順
   1. 「Download方法」にしたがってダウンロードし、zipファイルを解凍、ビルドツールを置きたい場所に配置
   2. **FirstAutomatedBld.vbs**　をダブルクリックする
@@ -42,6 +44,7 @@ GitHubの画面右下
 ## 初回のビルド方法 (半自動版)
 ### 注意！
 - `./coreupdate.sh`を実行し、**MSYS2のコンソールを再起動する**まで、`pacman -Syu` を**決して実行しないでください**。
+
 ### 手順
   1. [MSYS2](http://sourceforge.net/projects/msys2/)をインストールする（[msys2-base-x86_64-[date].tar.xz](http://sourceforge.net/projects/msys2/files/Base/x86_64/)を解凍するだけ）。
   2. **msys2_shell.bat** を実行する。
