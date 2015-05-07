@@ -13,7 +13,7 @@ if [ ! -f zlib-1.2.8.tar.gz ]; then
 fi
 cd ~/zlib_64/contrib/minizip
 if [ ! -d .git ]; then
-    git clone -v --progress --config core.autocrlf=false git://github.com/nmoinvaz/minizip.git ./
+    git clone -v --progress --config core.autocrlf=false https://github.com/nmoinvaz/minizip.git ./
 fi
 git pull -v --progress
 cd ../../
