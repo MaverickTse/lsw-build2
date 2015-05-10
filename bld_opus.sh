@@ -5,7 +5,10 @@ if [ ! -d opus ]; then
 fi
 cd opus
 if [ ! -d .git ]; then
-    git clone -v --progress --config core.autocrlf=false http://git.opus-codec.org/opus.git ./
+    git clone -v --progress --config core.autocrlf=false git://git.opus-codec.org/opus.git ./
+	if [ "$?" != "0" ]; then
+	  git clone -v --progress --config core.autocrlf=false http://git.opus-codec.org/opus.git ./
+	fi
 	
 fi
 git pull -v --progress
