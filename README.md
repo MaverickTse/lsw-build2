@@ -14,6 +14,7 @@ This set of scripts should be faster than the [MSYS version](https://github.com/
 Use the **Download Zip** button on the right of GitHub page.
 
 ## DEAD SIMPLE First-time Build Guide
+**Note on 20 May,2015: IF a screen full of ~tilds appears asking for reason to merge, type:** `:exit` then ENTER.
   1. Download this package and extract to some empty folder
   2. Double-Click on **FirstAutomatedBld.vbs**
   3. Select a build target by typing [0]:32-bit, [1]:64-bit or [2]: Both then ENTER. Type 3 to Abort.
@@ -25,6 +26,7 @@ Use the **Download Zip** button on the right of GitHub page.
   9. **P.S.:** _32bit and 64bit FFmpeg.exe can be found inside `msys64/mingw32/bin` and `msys64/mingw64/bin`, respectively.
   
   [VS2013 Community Edition Info](https://www.visualstudio.com/en-us/news/vs2013-community-vs.aspx)
+  
   
   
 ## Usage Guide (Manual)
