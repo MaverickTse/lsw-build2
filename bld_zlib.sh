@@ -20,7 +20,7 @@ cd ../../
 cp ~/patches/mingw-w64-zlib/*.patch ./
 patch -p2 -t -N < 01-zlib-1.2.7-1-buildsys.mingw.patch
 patch -p2 -t -N < 03-dont-put-sodir-into-L.mingw.patch
-patch -p1 -t -N < 013-fix-largefile-support.patch
+patch -p2 -t -N < 013-fix-largefile-support.patch
 cd contrib/minizip
 git apply ../../010-unzip-add-function-unzOpenBuffer.patch
 git apply ../../011-Add-no-undefined-to-link-to-enable-build-shared-vers.patch
