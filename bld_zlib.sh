@@ -35,7 +35,7 @@ pushd contrib/minizip > /dev/null
 autoreconf -fi
 
 CFLAGS+=" -DHAVE_BZIP2"
-./configure --prefix="/mingw32" --disable-shared --enable-static LIBS="-lbz2"
+CFLAGS="-m32" LDFLAGS="-m32" ./configure --prefix="/mingw32" --disable-shared --enable-static LIBS="-lbz2"
 make -j$(nproc)
 popd > /dev/null
 cd ~/zlib

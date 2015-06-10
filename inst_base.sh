@@ -90,25 +90,25 @@ cd ~
 rm -r -d cmake
 
 #Mingw32 fixes
-cd /mingw32/bin/
-mv gcc.exe gcc64.exe
-mv g++.exe g++64.exe
-mv ld.exe ld64.exe
+#cd /mingw32/bin/
+#mv gcc.exe gcc64.exe
+#mv g++.exe g++64.exe
+#mv ld.exe ld64.exe
 #Writes Fake GCC, redirect executables with -m32 flag
-cat > "gcc" << 'EOF'
+#cat > "gcc" << 'EOF'
 #!/usr/bin/bash
-x86_64-w64-mingw32-gcc -m32 "$@"
-EOF
+#x86_64-w64-mingw32-gcc -m32 "$@"
+#EOF
 
-cat > "g++" << 'EOF'
+#cat > "g++" << 'EOF'
 #!/usr/bin/bash
-x86_64-w64-mingw32-g++ -m32 "$@"
-EOF
+#x86_64-w64-mingw32-g++ -m32 "$@"
+#EOF
 
-cat > "ld" << 'EOF'
+#cat > "ld" << 'EOF'
 #!/usr/bin/bash
-ld64 --format=pe-i386 "$@"
-EOF
+#ld64 --format=pe-i386 "$@"
+#EOF
 
 #create extra directories
 if [ ! -d /mingw64/lib/pkgconfig ]; then
