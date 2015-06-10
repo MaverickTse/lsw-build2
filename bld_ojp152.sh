@@ -17,6 +17,9 @@ make clean
 cmake \
     -G"MSYS Makefiles" \
     -DCMAKE_INSTALL_PREFIX="$(cygpath -wa /)mingw32" \
+	-DCMAKE_C_FLAGS=" -m32" \
+	-DCMAKE_CXX_FLAGS=" -m32" \
+	-DCMAKE_EXE_LINKER_FLAGS=" -m32" \
     -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_TESTING:BOOL=OFF \
     -DCMAKE_SYSTEM_PREFIX_PATH="$(cygpath -wa /)mingw32" \

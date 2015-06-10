@@ -13,7 +13,10 @@ if [ ! -f zlib-1.2.8.tar.gz ]; then
 fi
 cd ~/zlib/contrib/minizip
 if [ ! -d .git ]; then
-    git clone -v --progress --config core.autocrlf=false https://github.com/nmoinvaz/minizip.git ./
+    git clone -v --progress --config core.autocrlf=false git://github.com/nmoinvaz/minizip.git ./
+	if [ "$?" != "0" ]; then
+	  git clone -v --progress --config core.autocrlf=false https://github.com/nmoinvaz/minizip.git ./
+	fi  
 fi
 git pull -v --progress
 cd ../../
@@ -33,7 +36,7 @@ pushd contrib/minizip > /dev/null
 autoreconf -fi
 
 CFLAGS+=" -DHAVE_BZIP2"
-./configure --prefix="/mingw32" --disable-shared --enable-static LIBS="-lbz2"
+CFLAGS="-m32" LDFLAGS="-m32" ./configure --prefix="/mingw32" --disable-shared --enable-static LIBS="-lbz2"
 make -j$(nproc)
 popd > /dev/null
 cd ~/zlib
