@@ -27,8 +27,7 @@ Use the **Download Zip** button on the right of GitHub page.
   
   [VS2013 Community Edition Info](https://www.visualstudio.com/en-us/news/vs2013-community-vs.aspx)
   
-  **REGRESSION** The 32bit version of AviSynth plugin seems non-functional with AviSynth 2.6 since June 2015!
-  
+   
   
   
 ## Usage Guide (Manual)
