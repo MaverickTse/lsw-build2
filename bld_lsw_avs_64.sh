@@ -18,8 +18,8 @@ cat > "bld_lsw_avs64.bat" << EOF
 chcp 1252
 call "${vspath}"
 if not exist UpgradeLog.htm devenv LSMASHSourceVCX.sln /upgrade
-set CL=/O2 /Oi /DLSMASHSOURCE_EXPORTS /I$(cygpath -was /mingw64/include)
-set LINK="libstdc++.a" "libpthread.dll.a" "libiconv.a" "libopenjpeg.a" "libopus.a" "liblzma.a" "liblsmash.a" "libavformat.a" "libavcodec.a" "libswscale.a" "libswresample.a" "libmsvcrt.a" /LIBPATH:$(cygpath -was /mingw64/lib) /LIBPATH:$(cygpath -was /mingw64/x86_64-w64-mingw32/lib) /LIBPATH:$(cygpath -was /mingw64/lib/gcc/x86_64-w64-mingw32/4.9.2)
+set CL= /I$(cygpath -was /mingw64/include)
+set LINK="libstdc++.a" "libpthread.a" "libopenjpeg.a" "libopus.a" "libswresample.a" "libmsvcrt.a" /LIBPATH:$(cygpath -was /mingw64/lib) /LIBPATH:$(cygpath -was /mingw64/x86_64-w64-mingw32/lib) /LIBPATH:$(cygpath -was /mingw64/lib/gcc/x86_64-w64-mingw32/4.9.2)
 msbuild.exe LSMASHSourceVCX.sln /target:Rebuild /p:Configuration=Release;Platform="x64";PlatformToolset=v${toolset}0
 chcp 65001
 EOF
