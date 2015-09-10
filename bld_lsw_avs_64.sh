@@ -12,6 +12,9 @@ elif [ -f "C:\Program Files\Microsoft Visual Studio 11.0\Common7\Tools\vsvars32.
     vspath="C:\Program Files\Microsoft Visual Studio 11.0\Common7\Tools\vsvars32.bat"
 	toolset="11"
 fi
+
+gccver=$(gcc --version | grep ^gcc | sed 's/^.* //g')
+
 cd ~/LSW_64/AviSynth
 cat > "bld_lsw_avs64.bat" << EOF
 @echo off
@@ -19,7 +22,7 @@ chcp 1252
 call "${vspath}"
 if not exist UpgradeLog.htm devenv LSMASHSourceVCX.sln /upgrade
 set CL= /I$(cygpath -was /mingw64/include)
-set LINK="libstdc++.a" "libpthread.a" "libopenjpeg.a" "libopus.a" "libswresample.a" "libmsvcrt.a" /LIBPATH:$(cygpath -was /mingw64/lib) /LIBPATH:$(cygpath -was /mingw64/x86_64-w64-mingw32/lib) /LIBPATH:$(cygpath -was /mingw64/lib/gcc/x86_64-w64-mingw32/4.9.2)
+set LINK="libstdc++.a" "libpthread.a" "libopenjpeg.a" "libopus.a" "libswresample.a" "libmsvcrt.a" /LIBPATH:$(cygpath -was /mingw64/lib) /LIBPATH:$(cygpath -was /mingw64/x86_64-w64-mingw32/lib) /LIBPATH:$(cygpath -was /mingw64/lib/gcc/x86_64-w64-mingw32/${gccver})
 msbuild.exe LSMASHSourceVCX.sln /target:Rebuild /p:Configuration=Release;Platform="x64";PlatformToolset=v${toolset}0
 chcp 65001
 EOF
