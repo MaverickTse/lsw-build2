@@ -29,16 +29,16 @@ echo "please retry later"
 exit
 fi
 
-#tdm_core_url=$(grep -m 1 "tdm64.*core.tar.lzma" tdmdlpage.html | sed -r 's/.*(http.*download)">.*/\1/')
-tdm_core_url=http://sourceforge.net/projects/tdm-gcc/files/TDM-GCC%204.9%20series/4.9.2-tdm64-1/gcc-4.9.2-tdm64-1-core.tar.lzma/download
-#tdm_bin_url=$(grep -m 1 "binutils.*tdm64.*.tar.lzma" tdmdlpage.html | sed -r 's/.*(http.*download)">.*/\1/')
-tdm_bin_url=http://sourceforge.net/projects/tdm-gcc/files/GNU%20binutils/binutils-2.25-tdm64-1.tar.lzma/download
-#tdm_rt_url=$(grep -m 1 "mingw64runtime.*tdm64.*.tar.lzma" tdmdlpage.html | sed -r 's/.*(http.*download)">.*/\1/')
-tdm_rt_url=http://sourceforge.net/projects/tdm-gcc/files/MinGW-w64%20runtime/GCC%204.9%20series/mingw64runtime-v3-git20141130-gcc49-tdm64-1.tar.lzma/download
-#tdm_cpp_url=$(grep -m 1 "tdm64.*c++.*tar.lzma" tdmdlpage.html | sed -r 's/.*(http.*download)">.*/\1/')
-tdm_cpp_url=http://sourceforge.net/projects/tdm-gcc/files/TDM-GCC%204.9%20series/4.9.2-tdm64-1/gcc-4.9.2-tdm64-1-c%2B%2B.tar.lzma/download
-#tdm_omp_url=$(grep -m 1 "tdm64.*openmp.*tar.lzma" tdmdlpage.html | sed -r 's/.*(http.*download)">.*/\1/')
-tdm_omp_url=http://sourceforge.net/projects/tdm-gcc/files/TDM-GCC%204.9%20series/4.9.2-tdm64-1/gcc-4.9.2-tdm64-1-openmp.tar.lzma/download
+tdm_core_url=$(grep -m 1 "tdm64.*core.tar.lzma" tdmdlpage.html | sed -r 's/.*(http.*download)">.*/\1/')
+#tdm_core_url=http://sourceforge.net/projects/tdm-gcc/files/TDM-GCC%204.9%20series/4.9.2-tdm64-1/gcc-4.9.2-tdm64-1-core.tar.lzma/download
+tdm_bin_url=$(grep -m 1 "binutils.*tdm64.*.tar.lzma" tdmdlpage.html | sed -r 's/.*(http.*download)">.*/\1/')
+#tdm_bin_url=http://sourceforge.net/projects/tdm-gcc/files/GNU%20binutils/binutils-2.25-tdm64-1.tar.lzma/download
+tdm_rt_url=$(grep -m 1 "mingw64runtime.*tdm64.*.tar.lzma" tdmdlpage.html | sed -r 's/.*(http.*download)">.*/\1/')
+#tdm_rt_url=http://sourceforge.net/projects/tdm-gcc/files/MinGW-w64%20runtime/GCC%204.9%20series/mingw64runtime-v3-git20141130-gcc49-tdm64-1.tar.lzma/download
+tdm_cpp_url=$(grep -m 1 "tdm64.*c++.*tar.lzma" tdmdlpage.html | sed -r 's/.*(http.*download)">.*/\1/')
+#tdm_cpp_url=http://sourceforge.net/projects/tdm-gcc/files/TDM-GCC%204.9%20series/4.9.2-tdm64-1/gcc-4.9.2-tdm64-1-c%2B%2B.tar.lzma/download
+tdm_omp_url=$(grep -m 1 "tdm64.*openmp.*tar.lzma" tdmdlpage.html | sed -r 's/.*(http.*download)">.*/\1/')
+#tdm_omp_url=http://sourceforge.net/projects/tdm-gcc/files/TDM-GCC%204.9%20series/4.9.2-tdm64-1/gcc-4.9.2-tdm64-1-openmp.tar.lzma/download
 echo "downloading TDM GCC Core"
 wget $tdm_core_url -O core.tar.lzma
 
