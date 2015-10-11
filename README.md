@@ -1,3 +1,4 @@
+# Currently BROKEN, Under investigation
 # lsw-build2(TDM)
 MSYS2 Build scripts for building [__L-Smash__](https://github.com/l-smash/l-smash) and [__L-Smash Works__](https://github.com/VFR-maniac/L-SMASH-Works/tree/master/AviUtl). 
 
