@@ -135,7 +135,7 @@ WScript.Echo("Please close the MSYS2 Window when it becomes idle (Press OK to Pr
 Call WshShell.Run(cmd1, 1, True) 'First-time launch
 'Wait for MSYS to close
 Set oWMISvc = GetObject("winmgmts:{impersonationLevel=impersonate}!\\.\root\cimv2")
-boolRunning = False
+boolRunning = True
 Do While boolRunning
   Set colProc = oWMISvc.ExecQuery("SELECT * FROM Win32_Process WHERE Name='" & "mintty.exe" & "'")
   boolRunning = False
