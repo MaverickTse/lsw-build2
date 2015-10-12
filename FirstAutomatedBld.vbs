@@ -154,7 +154,7 @@ Call WshShell.Run("%comspec% /c " & cmd1, 1, True)
 'core update
 cmd1 = "" & mintty_path & "" & " -i /msys2.ico /usr/bin/bash --login " & "" & home_path & "\coreupdate.sh" & ""
 Call WshShell.Run(cmd1, 1, True) 'Do update
-boolRunning = False 'wait
+boolRunning = True 'wait
 Do While boolRunning
   Set colProc = oWMISvc.ExecQuery("SELECT * FROM Win32_Process WHERE Name='" & "mintty.exe" & "'")
   boolRunning = False
@@ -167,7 +167,7 @@ Loop
 'install toolchain
 cmd1 = "" & mintty_path & "" & " -i /msys2.ico /usr/bin/bash --login " & "" & home_path & "\inst_base.sh" & "" 
 Call WshShell.Run(cmd1, 1, True) 'Do update
-boolRunning = False 'wait
+boolRunning = True 'wait
 Do While boolRunning
   Set colProc = oWMISvc.ExecQuery("SELECT * FROM Win32_Process WHERE Name='" & "mintty.exe" & "'")
   boolRunning = False
@@ -185,7 +185,7 @@ If (platform = 0) Or (platform = 2) Then
 cmd1 = "" & mintty_path & "" & " --hold error -i /msys2.ico /usr/bin/bash --login " & "" & home_path & "\buildmypkg.sh" & ""
 WshSysEnv("MSYSTEM") = "MINGW32" 'Use Mingw32 toolchain
 Call WshShell.Run(cmd1, 1, True) 'RUN!
-boolRunning = False 'hold
+boolRunning = True 'hold
 Do While boolRunning
   Set colProc = oWMISvc.ExecQuery("SELECT * FROM Win32_Process WHERE Name='" & "mintty.exe" & "'")
   boolRunning = False
@@ -203,7 +203,7 @@ If (hasVS2013_64 Or hasVS2013_32 Or hasVS2012_64 Or hasVS2012_32) Then
 cmd1 = "" & mintty_path & "" & " -i /msys2.ico /usr/bin/bash --login " & "" & home_path & "\bld_lsw_avs.sh" & ""
 WshSysEnv("MSYSTEM") = "MINGW32" 'Use Mingw32 toolchain
 Call WshShell.Run(cmd1, 1, True) 'Try to build LSW for AviSynth
-boolRunning = False 'hold
+boolRunning = True 'hold
 Do While boolRunning
   Set colProc = oWMISvc.ExecQuery("SELECT * FROM Win32_Process WHERE Name='" & "mintty.exe" & "'")
   boolRunning = False
@@ -223,7 +223,7 @@ If (platform = 1) Or (platform = 2) Then
 cmd1 = "" & mintty_path & "" & " --hold error -i /msys2.ico /usr/bin/bash --login " & "" & home_path & "\buildmypkg_64.sh" & ""
 WshSysEnv("MSYSTEM") = "MINGW64" 'Use Mingw32 toolchain
 Call WshShell.Run(cmd1, 1, True) 'RUN!
-boolRunning = False 'hold
+boolRunning = True 'hold
 Do While boolRunning
   Set colProc = oWMISvc.ExecQuery("SELECT * FROM Win32_Process WHERE Name='" & "mintty.exe" & "'")
   boolRunning = False
@@ -242,7 +242,7 @@ If (hasVS2013_64 Or hasVS2013_32 Or hasVS2012_64 Or hasVS2012_32) Then
 cmd1 = "" & mintty_path & "" & " -i /msys2.ico /usr/bin/bash --login " & "" & home_path & "\bld_lsw_avs_64.sh" & ""
 WshSysEnv("MSYSTEM") = "MINGW64" 'Use Mingw64 toolchain
 Call WshShell.Run(cmd1, 1, True) 'Try to build LSW for AviSynth
-boolRunning = False 'hold
+boolRunning = True 'hold
 Do While boolRunning
   Set colProc = oWMISvc.ExecQuery("SELECT * FROM Win32_Process WHERE Name='" & "mintty.exe" & "'")
   boolRunning = False
