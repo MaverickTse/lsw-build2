@@ -169,7 +169,7 @@ sed '
     AR="ar" \
 ' < ./profile_1 > ./profile_2
 
-sed 's/${MINGW_MOUNT_POINT}\/bin:${MSYS2_PATH}:${PATH}/${MINGW_MOUNT_POINT}\/bin:${MSYS2_PATH}/:\/c\/Windows\/System32' < ./profile_2 > ./profile_3
+sed 's/${MINGW_MOUNT_POINT}\/bin:${MSYS2_PATH}:${PATH}/${MINGW_MOUNT_POINT}\/bin:${MSYS2_PATH}:\/c\/Windows\/System32/' < ./profile_2 > ./profile_3
 
 mv ./profile ./profile_backup
 mv ./profile_3 ./profile
