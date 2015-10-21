@@ -11,6 +11,8 @@ elif [ -f "C:\Program Files\Microsoft Visual Studio 12.0\Common7\Tools\vsvars32.
 elif [ -f "C:\Program Files\Microsoft Visual Studio 11.0\Common7\Tools\vsvars32.bat" ]; then
     vspath="C:\Program Files\Microsoft Visual Studio 11.0\Common7\Tools\vsvars32.bat"
 	toolset="11"
+else
+	exit
 fi
 
 gccver=$(gcc --version | grep ^gcc | sed 's/^.* //g')
