@@ -124,8 +124,11 @@ Call WshShell.Run("%comspec% /c " & cmd1, 1, True)
 
 'Set Env Vars in prep for MSYS
 Set WshSysEnv= WshShell.Environment("PROCESS")
+Set WshNet = CreateObject("WScript.Network")
 WshSysEnv("MSYSTEM") = "MSYS"
 WshSysEnv("WD") = WshShell.CurrentDirectory & "\msys64\usr\bin\"
+'WshSysEnv("HOME") = WshShell.CurrentDirectory & "\msys64\home\" & WshNet.username
+WshShell.Environment("USER").Remove("HOME")
 mintty_path= WshShell.CurrentDirectory & "\msys64\usr\bin\mintty.exe"
 WshSysEnv("MSYSCON") = "mintty.exe"
 
