@@ -30,8 +30,8 @@ sed -i 's/${MINGW_MOUNT_POINT}\/bin:${MSYS2_PATH}:${PATH}/${MINGW_MOUNT_POINT}\/
 #HOME fix attempt
 expected_home="/home/$(id -u -n)"
 if [ $HOME != $expected_home ]; then
-$HOME=$expected_home
-cat '$HOME='$expected_home >> /etc/profile
+HOME=$expected_home
+cat 'HOME='$expected_home >> /etc/profile
 fi
 
 
