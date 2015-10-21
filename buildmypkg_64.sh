@@ -28,6 +28,9 @@ tput sgr0 # Reset text attributes to normal without clear
 echo -e "\E[30;42m Building L-Smash Works Plugin for VapourSynth\E[0m"
 tput sgr0 # Reset text attributes to normal without clear
 ./bld_lsw_vps_64.sh
+echo -e "\E[30;42m Building L-Smash Works Plugin for AviSynth\E[0m"
+tput sgr0 # Reset text attributes to normal without clear
+./bld_lsw_avs_64.sh
 echo -e "\E[32;40m Packaging...\E[0m"
 tput sgr0 # Reset text attributes to normal without clear
 ./packaging_64.sh
