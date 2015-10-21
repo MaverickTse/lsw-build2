@@ -80,16 +80,17 @@ if [ ! -d cmake ]; then
 mkdir cmake
 fi
 cd cmake
-wget http://www.cmake.org/download/ -O cmdlpage.html
+wget https://cmake.org/download/ -O cmdlpage.html 
+#domain changed in 2015 October
 
-cmake_url=$(grep -m 1 "cmake-[0-9.-]*win32-x86.zip" cmdlpage.html | sed -r 's/.*(http.*zip)">.*/\1/')
-
-cmake_ver=$(grep -m 1 "cmake-[0-9.-]*win32-x86.zip" cmdlpage.html | sed -r 's/.*(http.*zip)">.*/\1/' | sed -r 's_.*/(cmake.*).zip_\1_')
-
+#cmake_url=$(grep -m 1 "cmake-[0-9.-]*win32-x86.zip" cmdlpage.html | sed -r 's/.*(http.*zip)">.*/\1/')
+cmake_url=$(grep 'win32-x86.zip' cmdlpage.html | grep -v 'rc' | head -n1 | sed -r 's/(^.+href=")(.*zip)(".*)/https:\/\/cmake.org\2/')
+#cmake_ver=$(grep -m 1 "cmake-[0-9.-]*win32-x86.zip" cmdlpage.html | sed -r 's/.*(http.*zip)">.*/\1/' | sed -r 's_.*/(cmake.*).zip_\1_')
+cmake_ver=$(grep 'win32-x86.zip' cmdlpage.html| grep -v 'rc' | head -n1 | sed -r 's/(^.+href=")(.+?cmake-)(.+?)(-win32-x86.zip)(".*)/\3/')
 echo "Installing CMake version: " $cmake_ver
 wget $cmake_url -O cmake.zip
 7z x cmake.zip
-rsync -a $cmake_ver/ /usr/
+rsync -a cmake-$cmake_ver-win32-x86/ /usr/
 cd ~
 rm -r -d cmake
 
@@ -156,6 +157,7 @@ sed '
     CFLAGS="-m32" \
     CXXFLAGS="-m32" \
     LDFLAGS="-m32" \
+	PATH="${MINGW_MOUNT_POINT}/bin:${MSYS2_PATH}" \
 ' < ./profile > ./profile_1
 
 sed '
@@ -167,8 +169,10 @@ sed '
     AR="ar" \
 ' < ./profile_1 > ./profile_2
 
+sed 's/${MINGW_MOUNT_POINT}\/bin:${MSYS2_PATH}:${PATH}/${MINGW_MOUNT_POINT}\/bin:${MSYS2_PATH}/:\/c\/Windows\/System32' < ./profile_2 > ./profile_3
+
 mv ./profile ./profile_backup
-mv ./profile_2 ./profile
+mv ./profile_3 ./profile
 
 
 
