@@ -29,7 +29,7 @@ msbuild.exe LSMASHSourceVCX.sln /target:Rebuild /p:Configuration=Release;Platfor
 chcp 65001
 EOF
 
-cmd.exe /c bld_lsw_avs64.bat
+$COMSPEC /c bld_lsw_avs64.bat
 
 cd ~
 if [ -f ~/LSW_64/AviSynth/x64/Release/LSMASHSource.dll ]; then
