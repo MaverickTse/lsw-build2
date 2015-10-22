@@ -31,7 +31,7 @@ sed 's/${MINGW_MOUNT_POINT}\/bin:${MSYS2_PATH}:${PATH}/${MINGW_MOUNT_POINT}\/bin
 expected_home="/home/$(id -u -n)"
 if [ $HOME != $expected_home ]; then
 HOME=$expected_home
-cat 'HOME='$expected_home >> /etc/profile3
+echo "HOME=$expected_home" >> /etc/profile3
 fi
 
 mv profile profile.bak
