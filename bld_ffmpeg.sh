@@ -17,9 +17,4 @@ git pull -v --progress
   --enable-avisynth --disable-doc --disable-debug \
   --disable-network --disable-shared --disable-w32threads
 make clean
-t_threads=$(nproc)
-forks=$((t_threads-1))
-if [ $forks < 1 ]; then
-forks=1
-fi
-make -j$(forks) && make install
+make -j$(nproc) && make install
