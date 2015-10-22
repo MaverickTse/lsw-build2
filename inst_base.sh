@@ -5,7 +5,7 @@ cd /etc/
 echo "Backing up /etc/profile"
 cp ./profile ./profile.original
 echo "Modifying profile"
-sed -i '
+sed '
 /\s*\(MINGW32\))/a \
     ACLOCAL_PATH="/mingw32/share/aclocal:/usr/share/aclocal" \
     CC="gcc" \
@@ -15,24 +15,28 @@ sed -i '
     CFLAGS="-m32" \
     CXXFLAGS="-m32" \
     LDFLAGS="-m32" \
-' < ./profile
+' < ./profile > ./profile1
 
-sed -i '
+sed '
 /\s*\(MINGW64\))/a \
     ACLOCAL_PATH="/mingw64/share/aclocal:/usr/share/aclocal" \
     CC="gcc" \
     CXX="g++" \
     LD="ld" \
     AR="ar" \
-' < ./profile
+' < ./profile1 > ./profile2
 
-sed -i 's/${MINGW_MOUNT_POINT}\/bin:${MSYS2_PATH}:${PATH}/${MINGW_MOUNT_POINT}\/bin:${MSYS2_PATH}:\/c\/Windows\/System32/' < ./profile
+sed 's/${MINGW_MOUNT_POINT}\/bin:${MSYS2_PATH}:${PATH}/${MINGW_MOUNT_POINT}\/bin:${MSYS2_PATH}:\/c\/Windows\/System32/' < ./profile2 > ./profile3
 #HOME fix attempt
 expected_home="/home/$(id -u -n)"
 if [ $HOME != $expected_home ]; then
 HOME=$expected_home
-cat 'HOME='$expected_home >> /etc/profile
+cat 'HOME='$expected_home >> /etc/profile3
 fi
+
+mv profile profile.bak
+mv profile3 profile
+cd ~
 
 
 pacman --needed --noconfirm -S pkg-config libtool make automake autogen autoconf bison scons vim texinfo wget yasm patch nasm dos2unix diffutils unzip zip p7zip tar git rsync
