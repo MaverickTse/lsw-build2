@@ -1,5 +1,44 @@
 #!/usr/bin/bash
 
+#Edit profile
+cd /etc/
+echo "Backing up /etc/profile"
+cp ./profile ./profile.original
+echo "Modifying profile"
+sed '
+/\s*\(MINGW32\))/a \
+    ACLOCAL_PATH="/mingw32/share/aclocal:/usr/share/aclocal" \
+    CC="gcc" \
+    CXX="g++" \
+    LD="ld" \
+    AR="ar" \
+    CFLAGS="-m32" \
+    CXXFLAGS="-m32" \
+    LDFLAGS="-m32" \
+' < ./profile > ./profile1
+
+sed '
+/\s*\(MINGW64\))/a \
+    ACLOCAL_PATH="/mingw64/share/aclocal:/usr/share/aclocal" \
+    CC="gcc" \
+    CXX="g++" \
+    LD="ld" \
+    AR="ar" \
+' < ./profile1 > ./profile2
+
+sed 's/${MINGW_MOUNT_POINT}\/bin:${MSYS2_PATH}:${PATH}/${MINGW_MOUNT_POINT}\/bin:${MSYS2_PATH}:\/c\/Windows\/System32/' < ./profile2 > ./profile3
+#HOME fix attempt
+expected_home="/home/$(id -u -n)"
+if [ $HOME != $expected_home ]; then
+HOME=$expected_home
+echo "HOME=$expected_home" >> /etc/profile3
+fi
+
+mv profile profile.bak
+mv profile3 profile
+cd ~
+
+
 pacman --needed --noconfirm -S pkg-config libtool make automake autogen autoconf bison scons vim texinfo wget yasm patch nasm dos2unix diffutils unzip zip p7zip tar git rsync
 
 if [ $? -ne 0 ]; then
@@ -142,37 +181,6 @@ fi
 
 
 
-#Edit profile
-cd /etc/
-echo "Backing up /etc/profile"
-cp ./profile ./profile.original
-echo "Modifying profile"
-sed '
-/\s*\(MINGW32\))/a \
-    ACLOCAL_PATH="/mingw32/share/aclocal:/usr/share/aclocal" \
-    CC="gcc" \
-    CXX="g++" \
-    LD="ld" \
-    AR="ar" \
-    CFLAGS="-m32" \
-    CXXFLAGS="-m32" \
-    LDFLAGS="-m32" \
-	PATH="${MINGW_MOUNT_POINT}/bin:${MSYS2_PATH}" \
-' < ./profile > ./profile_1
-
-sed '
-/\s*\(MINGW64\))/a \
-    ACLOCAL_PATH="/mingw64/share/aclocal:/usr/share/aclocal" \
-    CC="gcc" \
-    CXX="g++" \
-    LD="ld" \
-    AR="ar" \
-' < ./profile_1 > ./profile_2
-
-sed 's/${MINGW_MOUNT_POINT}\/bin:${MSYS2_PATH}:${PATH}/${MINGW_MOUNT_POINT}\/bin:${MSYS2_PATH}:\/c\/Windows\/System32/' < ./profile_2 > ./profile_3
-
-mv ./profile ./profile_backup
-mv ./profile_3 ./profile
 
 
 
