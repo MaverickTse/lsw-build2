@@ -128,6 +128,7 @@ WshSysEnv("MSYSTEM") = "MSYS"
 WshSysEnv("WD") = WshShell.CurrentDirectory & "\msys64\usr\bin\"
 mintty_path= WshShell.CurrentDirectory & "\msys64\usr\bin\mintty.exe"
 WshSysEnv("MSYSCON") = "mintty.exe"
+WshSysEnv("HOME") = WshShell.CurrentDirectory & "\msys64\home\" & WshSysEnv("USERNAME") & "\"
 
 Rem ************** Ready to Launch Mintty ***************************************
 cmd1 = "" & mintty_path & "" & " --hold error -i /msys2.ico /usr/bin/bash --login"
