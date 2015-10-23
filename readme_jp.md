@@ -24,6 +24,8 @@ GitHubの画面右下
 ## 初回のビルド方法（自動化版）
 ### 注意
 - 通信回線が安定している状態で実行してください。失敗した場合は**msys2.tar.xz**を削除してから**FirstAutomatedBld.vbs**を再実行してください。
+- 何度やってもvbsのエラーがでる場合はMSYS2と7zipのDLに失敗しています。その場合は半自動版の手順をお試しください。
+- Note on 20 May,2015: IF a screen full of ~tilds appears asking for reason to merge, type: ``:exit`` then ENTER.
 
 ### 手順
   1. 「Download方法」にしたがってダウンロードし、zipファイルを解凍、ビルドツールを置きたい場所に配置
