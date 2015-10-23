@@ -42,7 +42,7 @@ Use the **Download Zip** button on the right of GitHub page.
   8. Run **mingw32_shell.bat** for 32bit target, **mingw64_shell.bat** for 64bit target
   9. `./buildmypkg.sh` or `./buildmypkg_64.sh`
   10. If you have VS2012 or VS2013 and want to build LSW for AviSynth, run `./bld_lsw_avs.sh` or `./bld_lsw_avs_64.sh`
-  11. Retrieve your package at _MSYS2ROOT_/ReadyToUse32
+  11. Retrieve your package at `_MSYS2ROOT_/ReadyToUse32` or `_MSYS2ROOT_/ReadyToUse64`
   
 ## Caution
 **DO NOT RUN** `pacman -Syu` without first running `./coreupdate.sh` and **restarting MSYS2!**
