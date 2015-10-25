@@ -9,6 +9,7 @@ Dim cmd1
 Dim home_path
 Dim strInput
 Dim platform
+Dim is_downloaded_7za
 
 'Let user to choose the build target(s), 32bit, 64bit or both
 strInput= InputBox("Which target to build?" & vbCrlf & "[0]:32-bit" & vbCrlf &"[1]:64-bit" & vbCrlf & "[2]: Both" & vbCrlf & "[3]: Quit","Select platform (All Win-Static)", "0")
@@ -101,15 +102,23 @@ cmd1 = """" & WshShell.CurrentDirectory & "\wget.exe" & """" &" " & "" & url & "
 Call WshShell.Run(cmd1, 1, True)
 End if
 
+' Check whether 7za has been downloaded
+is_downloaded_7za = WshFS.FileExists("7za.exe")
+'WScript.Echo(is_downloaded_7za)
+If (Not is_downloaded_7za) and (WshFS.FileExists("7za920.zip")) Then
+Dim objFile
+Set objFile = WshFS.GetFile("7za920.zip")
+If objFile.Size > 1 Then is_downloaded_7za = True
+End If
+'WScript.Echo(is_downloaded_7za)
+
 'DL 7-zip CLI
-If (Not WshFS.FileExists("7za.exe")) Then
+If (Not is_downloaded_7za) Then
 url = "http://downloads.sourceforge.net/sevenzip/7za920.zip"
 cmd1 = """" & WshShell.CurrentDirectory & "\wget.exe" & """" &" " & "" & url & "" & " -O 7za920.zip"
 'WScript.Echo(cmd1)
 Call WshShell.Run(cmd1, 1, True)
 End if
-'Set oExec = WshShell.Exec(cmd1)
-'WScript.Echo(oExec.ExitCode)
 
 'Unzip
 If (Not WshFS.FileExists("7za.exe")) Then
