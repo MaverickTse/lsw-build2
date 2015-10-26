@@ -23,8 +23,10 @@ GitHubの画面右下
 
 ## 初回のビルド方法（自動化版）
 ### 注意
-- 通信回線が安定している状態で実行してください。失敗した場合は**msys2.tar.xz**を削除してから**FirstAutomatedBld.vbs**を再実行してください。
-- 何度やってもvbsのエラーがでる場合はMSYS2と7zipのDLに失敗しています。その場合は半自動版の手順をお試しください。
+- 通信回線が安定している状態で実行してください。
+- AviSynth向けL-SMASH Works plugin のbuildにはVisual Studio 2010/2012/2013が必要です。  
+**Visual Studio 2015は対応していません**。  
+存在しない場合AviSynth向けL-SMASH Works plugin のbuildはskipされます
 - Note on 20 May,2015: IF a screen full of ~tilds appears asking for reason to merge, type: ``:exit`` then ENTER.
 
 ### 手順
@@ -38,8 +40,18 @@ GitHubの画面右下
   8. **(追記)**AviSynth pluginは、Visual Studio 2012 または Visual Stusio 2013がインストールされている時のみビルドされます。
   9. **(追記)** 32bit版と64bit版のFFmpeg.exeはそれぞれ`msys64/mingw32/bin`と`msys64/mingw64/bin`にあります。
 
->Visual Studio Community 2013 Update 4
+### 失敗した時
+Script Errorが出る場合はMSYS2と7zipのDLに失敗している可能性が高いので下を試す
 
+  1. もし存在したら``msys2.tar.xz``を削除
+  2. [msys2-base-x86_64-[date].tar.xz](http://sourceforge.net/projects/msys2/files/Base/x86_64/)(64bitOS向け)または[msys2-base-i686-[date].tar.xz](http://sourceforge.net/projects/msys2/files/Base/i686/)(32bitOS向け)をDLする
+  2. ``msys2.tar.xz``にリネーム
+  3. [7za920.zip](http://downloads.sourceforge.net/sevenzip/7za920.zip)を落とす
+  4. 2つとも``FirstAutomatedBld.vbs``と同じ所に置く
+  5. ``FirstAutomatedBld.vbs``をダブルクリックして実行
+  6. これでもダメなら初回のビルド方法 (半自動版)を試す。[Issue](https://github.com/MaverickTse/lsw-build2/issues)に失敗情報を書いてくれると他の人のためになります。
+
+>Visual Studio Community 2013 Update 4  
 >http://www.visualstudio.com/ja-jp/downloads/download-visual-studio-vs#d-community-expando
   
 
@@ -49,7 +61,7 @@ GitHubの画面右下
 - この方法はめんdです。なので自動化版の手順に失敗した時のみ試してみてください。
 
 ### 手順
-  1. [MSYS2](http://sourceforge.net/projects/msys2/)をインストールする（[msys2-base-x86_64-[date].tar.xz](http://sourceforge.net/projects/msys2/files/Base/x86_64/)を解凍するだけ）。
+  1. [msys2-base-x86_64-[date].tar.xz](http://sourceforge.net/projects/msys2/files/Base/x86_64/)(64bitOS向け)または[msys2-base-i686-[date].tar.xz](http://sourceforge.net/projects/msys2/files/Base/i686/)(32bitOS向け)をDLし、解凍する。
   2. **msys2_shell.bat** を実行する。
   3. 終わったらMSYS2のコンソールを終了する
   4. スクリプト群を `MSYS2ROOT/home/UserName/` にコピーする。
@@ -58,7 +70,7 @@ GitHubの画面右下
   7. `./inst_base.sh` と打ち実行、 終了したら MSYS2のコンソールを閉じる
   8.  32bit向けには**mingw32_shell.bat** を、64bit向けには**mingw64_shell.bat**を実行する。**msys2_shell.batではない！** 
   9.  32bit向けには`./buildmypkg.sh`、64bit向けには`./buildmypkg_64.sh`と打ち実行する。
-  10. VS2012 か VS2013がインストールされていて、L-SMASH WorksのAviSynth向けプラグイン(LSMASHSource.dll)をビルドしたい場合は、32bit向けには`./bld_lsw_avs.sh`、64bit向けには`./bld_lsw_avs_64.sh`と打ち実行
+  10. VS2010/2012/2013がインストールされていて、L-SMASH WorksのAviSynth向けプラグイン(LSMASHSource.dll)をビルドしたい場合は、32bit向けには`./bld_lsw_avs.sh`、64bit向けには`./bld_lsw_avs_64.sh`と打ち実行
   11. `MSYS2ROOT\ReadyToUse32`(32bit向け)または`MSYS2ROOT\ReadyToUse64`(64bit向け)にビルド生成物が有ります。
   
   
