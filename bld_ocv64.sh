@@ -1,6 +1,17 @@
 if [ ! -d ~/opencv ]; then
   git clone --recursive https://github.com/Itseez/opencv.git
+else
+  cd opencv
+  git pull  
 fi
+cd ~
+if [ ! -d ~/ocvcontrib ]; then
+  git clone --recursive https://github.com/Itseez/opencv_contrib.git ocvcontrib
+else
+  cd ocvcontrib
+  git pull
+fi
+cd ~
 if [ ! -d ~/ocv64 ]; then
 mkdir ~/ocv64
 fi
@@ -8,23 +19,25 @@ cd ~/ocv64
 if [ -f Makefile ]; then
 make clean
 fi
+
 cd ~/opencv
-git pull
+
 cp ~/patches/mingw-w64-opencv/*.patch ./
 patch -Np1 -i "mingw-w64-cmake.patch"
 patch -Np1 -i "solve_deg3-underflow.patch"
-patch -Np1 -i "issue-4107.patch"
+#patch -Np1 -i "issue-4107.patch"
+#4107 should have been fixed in master branch
 patch -Np1 -i "remove-bindings-generation-DetectionBasedTracker.patch"
 patch -Np1 -i "generate-proper-pkg-config-file.patch"
 patch -Np1 -i "opencv-support-python-3.5.patch"
-cd ~/ocv64
-PATH=${PATH}:${CUDA_PATH}:${NVTOOLSEXT}:${VS120COMNTOOLS}:${VS110COMNTOOLS}
+cd ~/ocv32
+PATH=${PATH}:${CUDA_PATH}
 cmake \
     -G"MSYS Makefiles" \
     -DCMAKE_BUILD_TYPE=Release \
 	-DPKG_CONFIG_WITHOUT_PREFIX=ON \
 	-DBUILD_SHARED_LIBS=ON \
-	-DWITH_CUDA=ON \
+	-DWITH_CUDA=OFF \
 	-DWITH_VTK=OFF \
 	-DWITH_GTK=OFF \
     -DWITH_OPENCL=ON \
@@ -37,6 +50,9 @@ cmake \
 	-DENABLE_SSE41=ON \
 	-DENABLE_SSE42=ON \
 	-DCPACK_BINARY_7Z=ON \
+	-DCPACK_BINARY_NSIS=OFF \
+	-DOPENCV_EXTRA_MODULES_PATH=../ocvcontrib/modules \
+	-DBUILD_opencv_text=OFF \
 	-Wno-dev \
 	~/opencv \
 
