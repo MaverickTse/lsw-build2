@@ -25,7 +25,7 @@ cd ~/opencv
 cp ~/patches/mingw-w64-opencv/*.patch ./
 patch -Np1 -i "mingw-w64-cmake.patch"
 patch -Np1 -i "solve_deg3-underflow.patch"
-#patch -Np1 -i "issue-4107.patch"
+patch -Np1 -i "issue-4107.patch"
 #4107 should have been fixed in master branch
 patch -Np1 -i "remove-bindings-generation-DetectionBasedTracker.patch"
 patch -Np1 -i "generate-proper-pkg-config-file.patch"
@@ -34,6 +34,8 @@ cd ~/ocv64d
 PATH=${PATH}:${CUDA_PATH}
 cmake \
     -G"MSYS Makefiles" \
+	-DCMAKE_C_FLAGS=" -DSTRSAFE_NO_DEPRECATE " \
+	-DCMAKE_CXX_FLAGS=" -DSTRSAFE_NO_DEPRECATE " \
     -DCMAKE_BUILD_TYPE=Debug \
 	-DPKG_CONFIG_WITHOUT_PREFIX=ON \
 	-DBUILD_SHARED_LIBS=ON \
@@ -45,10 +47,6 @@ cmake \
 	-DCMAKE_SKIP_RPATH=ON \
     -DENABLE_PRECOMPILED_HEADERS=OFF \
     -DENABLE_FAST_MATH=ON \
-	-DENABLE_SSE3=ON \
-	-DENABLE_SSSE3=ON \
-	-DENABLE_SSE41=ON \
-	-DENABLE_SSE42=ON \
 	-DCPACK_BINARY_7Z=ON \
 	-DCPACK_BINARY_NSIS=OFF \
 	-DOPENCV_EXTRA_MODULES_PATH=../ocvcontrib/modules \
