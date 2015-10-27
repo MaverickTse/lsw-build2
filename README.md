@@ -28,7 +28,7 @@ Use the **Download Zip** button on the right of GitHub page.
   9. **P.S.:** _32bit and 64bit FFmpeg.exe can be found inside `msys64/mingw32/bin` and `msys64/mingw64/bin`, respectively.
   
 
-### When you fail above
+### If the above fails...
 
   1. Delete ``msys2.tar.xz``
   2. Download [msys2-base-x86_64-[date].tar.xz](http://sourceforge.net/projects/msys2/files/Base/x86_64/)(for 64bit arch) or [msys2-base-i686-[date].tar.xz](http://sourceforge.net/projects/msys2/files/Base/i686/)(for 32bita arch)
@@ -36,7 +36,7 @@ Use the **Download Zip** button on the right of GitHub page.
   3. Download [7za920.zip](http://downloads.sourceforge.net/sevenzip/7za920.zip)
   4. Put in the same place as ``FirstAutomatedBld.vbs``
   5. Double-Click on ``FirstAutomatedBld.vbs``
-  6. When a script still also fails in this, try "Usage Guide (Manual)". And please write [Issue](https://github.com/MaverickTse/lsw-build2/issues).
+  6. When a script still also fails in this, try "Usage Guide (Manual)". And please file an  [Issue](https://github.com/MaverickTse/lsw-build2/issues).
   
 [VS2013 Community Edition Info](https://www.visualstudio.com/en-us/news/vs2013-community-vs.aspx)
   
@@ -58,6 +58,8 @@ Use the **Download Zip** button on the right of GitHub page.
   
 ## Caution
 **DO NOT RUN** `pacman -Syu` without first running `./coreupdate.sh` and **restarting MSYS2!**
+
+P.S. recent versions of MSYS2 already comes with the `update-core` command. `coreupdate.sh` now just calls the internal command.
 
 ## How to Rebuild
   1. Run **mingw32_shell.bat** for 32bit target, **mingw64_shell.bat** for 64bit target
