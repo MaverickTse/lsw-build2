@@ -1,4 +1,9 @@
 #!/bin/bash
+if [ $MSYSTEM != "MINGW64" ]; then
+echo "You MUST launch MSYS2 using mingw64_shell.bat"
+echo "OR set the PROCESS environment variable: MSYSTEM , to 'MINGW64', prior launching mintty.exe"
+exit
+else
 if [ ! -d /ReadyToUse64 ]; then
     mkdir /ReadyToUse64
 fi

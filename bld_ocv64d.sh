@@ -1,3 +1,8 @@
+if [ $MSYSTEM != "MINGW64" ]; then
+echo "You MUST launch MSYS2 using mingw64_shell.bat"
+echo "OR set the PROCESS environment variable: MSYSTEM , to 'MINGW64', prior launching mintty.exe"
+exit
+else
 if [ ! -d ~/opencv ]; then
   git clone --recursive https://github.com/Itseez/opencv.git
 else
