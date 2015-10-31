@@ -16,5 +16,7 @@ git pull -v --progress
 cd VapourSynth
 ./configure --prefix="/mingw64" --extra-ldflags="-static"
 make clean
-make -j$(nproc) && make install
+THREAD=$(nproc)
+THREAD=$((THREAD<2?1:THREAD-1))
+make -j$THREAD && make install
 

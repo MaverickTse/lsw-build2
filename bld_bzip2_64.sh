@@ -22,4 +22,6 @@ if [ ! -f bzip2-1.0.6.tar.gz ]; then
 fi
 ./configure --prefix="/mingw64"
 make clean
-make -j$(nproc) && make install
+THREAD=$(nproc)
+THREAD=$((THREAD<2?1:THREAD-1))
+make -j$THREAD && make install

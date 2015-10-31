@@ -1,3 +1,4 @@
+#!/bin/bash
 if [ $MSYSTEM != "MINGW64" ]; then
 echo "You MUST launch MSYS2 using mingw64_shell.bat"
 echo "OR set the PROCESS environment variable: MSYSTEM , to 'MINGW64', prior launching mintty.exe"
@@ -18,6 +19,8 @@ if [ -f Makefile ]; then
 make clean
 fi
 cd ~/sfml64d
+THREAD=$(nproc)
+THREAD=$((THREAD<2?1:THREAD-1))
 cmake \
     -G"MSYS Makefiles" \
     -DCMAKE_BUILD_TYPE=Debug \
@@ -29,4 +32,4 @@ cmake \
 	-DBUILD_SHARED_LIBS=OFF \
 	${HOME}/sfml \
 
-make -j$(nproc)
+make -j$THREAD

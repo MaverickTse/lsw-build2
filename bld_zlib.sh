@@ -36,13 +36,15 @@ git apply ../../012-Add-bzip2-library-to-pkg-config-file.patch
 
 cd ../../
 CFLAGS="-m32" LDFLAGS="-m32" ./configure --prefix="/mingw32" --static
-make -j$(nproc) all
+THREAD=$(nproc)
+THREAD=$((THREAD<2?1:THREAD-1))
+make -j$THREAD all
 pushd contrib/minizip > /dev/null
 autoreconf -fi
 
 CFLAGS+=" -DHAVE_BZIP2"
 CFLAGS="-m32" LDFLAGS="-m32" ./configure --prefix="/mingw32" --disable-shared --enable-static LIBS="-lbz2"
-make -j$(nproc)
+make -j$THREAD
 popd > /dev/null
 cd ~/zlib
 make install

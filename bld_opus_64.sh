@@ -20,4 +20,6 @@ patch -p1 -t -N < 0001-correctly-detect-alloca.mingw.patch
 autoreconf -fi
 ./configure --prefix="/mingw64" --enable-static --disable-shared --enable-custom-modes
 make clean
-make -j$(nproc) && make install
+THREAD=$(nproc)
+THREAD=$((THREAD<2?1:THREAD-1))
+make -j$THREAD && make install

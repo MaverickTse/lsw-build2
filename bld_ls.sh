@@ -15,4 +15,6 @@ fi
 git pull -v --progress
 ./configure --prefix="/mingw32" --extra-cflags="-m32" --extra-ldflags="-m32"
 make clean
-make -j$(nproc) && make install
+THREAD=$(nproc)
+THREAD=$((THREAD<2?1:THREAD-1))
+make -j$THREAD && make install

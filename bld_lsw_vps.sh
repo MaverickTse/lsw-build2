@@ -24,7 +24,9 @@ cd ~/LSW/VapourSynth
 # mv ./GNUmakefile32 ./GNUmakefile
 ./configure --extra-cflags=" -m32 " --extra-ldflags=" -m32 " 
 make clean
-make -j$(nproc)
+THREAD=$(nproc)
+THREAD=$((THREAD<2?1:THREAD-1))
+make -j$THREAD
 # rm ./GNUmakefile
 # mv ./GNUmakefile_original ./GNUmakefile
 #cd /mingw32/bin

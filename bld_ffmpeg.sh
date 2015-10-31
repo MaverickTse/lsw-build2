@@ -21,4 +21,6 @@ git pull -v --progress
   --enable-avisynth --disable-doc --disable-debug \
   --disable-network --disable-shared --disable-w32threads
 make clean
-make -j$(nproc) && make install
+THREAD=$(nproc)
+THREAD=$((THREAD<2?1:THREAD-1))
+make -j$THREAD && make install
