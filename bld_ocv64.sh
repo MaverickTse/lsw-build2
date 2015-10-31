@@ -1,3 +1,4 @@
+#!/bin/bash
 if [ $MSYSTEM != "MINGW64" ]; then
 echo "You MUST launch MSYS2 using mingw64_shell.bat"
 echo "OR set the PROCESS environment variable: MSYSTEM , to 'MINGW64', prior launching mintty.exe"
@@ -35,7 +36,9 @@ patch -Np1 -i "solve_deg3-underflow.patch"
 patch -Np1 -i "remove-bindings-generation-DetectionBasedTracker.patch"
 patch -Np1 -i "generate-proper-pkg-config-file.patch"
 patch -Np1 -i "opencv-support-python-3.5.patch"
-cd ~/ocv32
+cd ~/ocv64
+THREAD=$(nproc)
+THREAD=$((THREAD<2?1:THREAD-1))
 PATH=${PATH}:${CUDA_PATH}
 cmake \
     -G"MSYS Makefiles" \
@@ -61,4 +64,4 @@ cmake \
 	-Wno-dev \
 	~/opencv \
 
-make -j$(nproc) && make package
+make -j$THREAD && make package
