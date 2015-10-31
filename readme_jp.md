@@ -1,4 +1,5 @@
-﻿# lsw-build2
+﻿# バグ: LSW AviSynth 64-bit plugin build に問題があります
+# lsw-build2
 MSYS2をつかって、[__L-Smash__](https://github.com/l-smash/l-smash) と [__L-Smash Works__](https://github.com/VFR-maniac/L-SMASH-Works/tree/master/AviUtl)を簡単にビルドするスクリプト群です。 
 
 コンパイラーにはmsys2のpacman(パッケージ管理ツール)で落ちるgccではなく、**TDM64-GCCを使用します**。
