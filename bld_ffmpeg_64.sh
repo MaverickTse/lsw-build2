@@ -5,15 +5,26 @@ echo "OR set the PROCESS environment variable: MSYSTEM , to 'MINGW64', prior lau
 exit
 fi
 
-if [ ! -d ffmpeg_64 ]; then
-    mkdir ffmpeg_64
+if [ ! -d ffmpeg ]; then
+    mkdir ffmpeg
 fi
-cd ffmpeg_64
+cd ffmpeg
 if [ ! -d .git ]; then
     git clone -v --progress --config core.autocrlf=false https://github.com/FFmpeg/FFmpeg.git ./
+else
+	git pull -v --progress
 fi
-git pull -v --progress
-./configure --prefix="/mingw64" --target-os=mingw32\
+
+cd ~
+if [ ! -d ff64 ]; then
+	mkdir ff64
+else
+	rm -rd ff64
+	mkdir ff64
+fi
+cd ff64
+
+~/ffmpeg/configure --prefix="/mingw64" --target-os=mingw32\
   --extra-cflags="-fexcess-precision=fast -I/mingw64/include/openjpeg-1.5" \
   --enable-static --enable-avresample --enable-memalign-hack \
   --enable-pthreads --enable-runtime-cpudetect --enable-gpl \
