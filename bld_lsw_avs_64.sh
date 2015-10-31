@@ -3,7 +3,7 @@ if [ $MSYSTEM != "MINGW64" ]; then
 echo "You MUST launch MSYS2 using mingw64_shell.bat"
 echo "OR set the PROCESS environment variable: MSYSTEM , to 'MINGW64', prior launching mintty.exe"
 exit
-else
+fi
 if [ -f "C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\Tools\vsvars32.bat" ]; then
     vspath="C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\Tools\vsvars32.bat"
 	toolset="12"

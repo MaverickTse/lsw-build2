@@ -4,7 +4,7 @@ if [ $MSYSTEM != "MINGW32" ]; then
 echo "You MUST launch MSYS2 using mingw32_shell.bat"
 echo "OR set the PROCESS environment variable: MSYSTEM , to 'MINGW32', prior launching mintty.exe"
 exit
-else
+fi
 if [ ! -d l-smash ]; then
     mkdir l-smash
 fi
