@@ -42,6 +42,7 @@ THREAD=$((THREAD<2?1:THREAD-1))
 PATH=${PATH}:${CUDA_PATH}
 cmake \
     -G"MSYS Makefiles" \
+    -DCMAKE_INSTALL_PREFIX="$(cygpath -wa /)mingw64" \
 	-DCMAKE_C_FLAGS=" -DSTRSAFE_NO_DEPRECATE " \
 	-DCMAKE_CXX_FLAGS=" -DSTRSAFE_NO_DEPRECATE " \
     -DCMAKE_BUILD_TYPE=Debug \
@@ -63,3 +64,4 @@ cmake \
 	~/opencv \
 
 make -j$THREAD && make package
+make install
