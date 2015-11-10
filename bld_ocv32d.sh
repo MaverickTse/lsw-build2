@@ -64,6 +64,18 @@ cmake \
 	~/opencv \
 
 make -j$THREAD && make package
-if [ $# -ne 1 ] && ["--enable-make-install" = "$1"]; then
+echo "build done."
+if [ $# -gt 0 ] && [ "--enable-make-install" = "$1" ]; then
+	if [ -e opencv.pc ]; then
+		mv mv opencv.pc opencvt.pc
+	fi
 	make install
+	cd $(cygpath -wa /)mingw32/lib/pkgconfig
+	echo "rename..."
+	sed -i -e '/Name:/s/OpenCV/OpenCVd/' ./opencv.pc
+	mv opencv.pc opencvd.pc
+	echo "done."
+	if [ -e opencvt.pc ]; then
+		mv opencvt.pc opencv.pc
+	fi
 fi

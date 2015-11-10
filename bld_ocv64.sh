@@ -66,6 +66,6 @@ cmake \
 	~/opencv \
 
 make -j$THREAD && make package
-if [ $# -ne 1 ] && ["--enable-make-install" = "$1"]; then
+if [ $# -gt 0 ] && [ "--enable-make-install" = "$1" ]; then
 	make install
 fi
