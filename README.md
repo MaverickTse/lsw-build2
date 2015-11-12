@@ -1,3 +1,5 @@
+## For LSW-AviSynth Plugin, please build FFmpeg, lsmash and lsw-plugin in order using MSVC manually. That is, everything needs to be using MSVC toolchain.
+
 # lsw-build2(TDM)
 MSYS2 Build scripts for building [__L-Smash__](https://github.com/l-smash/l-smash) and [__L-Smash Works__](https://github.com/VFR-maniac/L-SMASH-Works/tree/master/AviUtl). 
 
