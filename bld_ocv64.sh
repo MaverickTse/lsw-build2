@@ -42,6 +42,7 @@ THREAD=$((THREAD<2?1:THREAD-1))
 PATH=${PATH}:${CUDA_PATH}
 cmake \
     -G"MSYS Makefiles" \
+    -DCMAKE_INSTALL_PREFIX="$(cygpath -wa /)mingw64" \
     -DCMAKE_BUILD_TYPE=Release \
 	-DPKG_CONFIG_WITHOUT_PREFIX=ON \
 	-DBUILD_SHARED_LIBS=ON \
@@ -65,3 +66,6 @@ cmake \
 	~/opencv \
 
 make -j$THREAD && make package
+if [ $# -gt 0 ] && [ "--enable-make-install" = "$1" ]; then
+	make install
+fi

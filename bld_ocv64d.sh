@@ -42,6 +42,7 @@ THREAD=$((THREAD<2?1:THREAD-1))
 PATH=${PATH}:${CUDA_PATH}
 cmake \
     -G"MSYS Makefiles" \
+    -DCMAKE_INSTALL_PREFIX="$(cygpath -wa /)mingw64" \
 	-DCMAKE_C_FLAGS=" -DSTRSAFE_NO_DEPRECATE " \
 	-DCMAKE_CXX_FLAGS=" -DSTRSAFE_NO_DEPRECATE " \
     -DCMAKE_BUILD_TYPE=Debug \
@@ -63,3 +64,18 @@ cmake \
 	~/opencv \
 
 make -j$THREAD && make package
+if [ $# -gt 0 ] && [ "--enable-make-install" = "$1" ]; then
+	if [ -e opencv.pc ]; then
+		mv mv opencv.pc opencvt.pc
+	fi
+	make install
+	cd $(cygpath -wa /)mingw64/lib/pkgconfig
+	echo "rename...pause"
+	read Wait
+	sed -i -e '/Name:/s/OpenCV/OpenCVd/' ./opencv.pc
+	mv opencv.pc opencvd.pc
+	echo "done."
+	if [ -e opencvt.pc ]; then
+		mv opencvt.pc opencv.pc
+	fi
+fi
