@@ -81,7 +81,7 @@ Call WshShell.Run(cmd1, 1, True)
 
 'DL wget
 If (Not WshFS.FileExists("wget.exe")) Then
-wget_fetch="http://eternallybored.org/misc/wget/wget.exe wget.exe"
+wget_fetch="https://eternallybored.org/misc/wget/current/wget.exe wget.exe"
 cmd1 = """" & WshShell.CurrentDirectory & "\wget.vbs" & """" &" "& wget_fetch
 Call WshShell.Run(cmd1, 1, True)
 End if
