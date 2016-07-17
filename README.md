@@ -25,12 +25,12 @@ Use the **Download Zip** button on the right of GitHub page.
   7. Close the dialog, and get your packages in _MSYS2ROOT_\ReadyToUse32 and _MSYS2ROOT_\ReadyToUse64
   8. **P.S.:** _32bit and 64bit FFmpeg.exe can be found inside `msys64/mingw32/bin` and `msys64/mingw64/bin`, respectively.
   
-~~**P.S.:** _The AviSynth plugin will only be built if you have either VS2013 or VS2015 installed_~~ [In order to build the AviSynth plugin, ffmpeg, it is one of dependency library, shold be compiled on Visual Studio](https://github.com/VFR-maniac/L-SMASH-Works/commit/71859e2428c1d8cb7ed44dd2121ed95be9a8a233), **so that we wiil not support. Please see [WIKI page](https://github.com/MaverickTse/lsw-build2/wiki/04-Building-LSW-for-Avisynth) for details**
+~~**P.S.:** _The AviSynth plugin will only be built if you have either VS2013 or VS2015 installed_~~ [In order to build the AviSynth plugin, it is required to compile ffmpeg, it is one of dependency library, on Visual Studio](https://github.com/VFR-maniac/L-SMASH-Works/commit/71859e2428c1d8cb7ed44dd2121ed95be9a8a233), **so that we were stop supportting that. Please see [WIKI page](https://github.com/MaverickTse/lsw-build2/wiki/04-Building-LSW-for-Avisynth) for details**
 
 ### If the above fails...
 
   1. Delete ``msys2.tar.xz``
-  2. Download [msys2-base-x86_64-[date].tar.xz](http://sourceforge.net/projects/msys2/files/Base/x86_64/)(for 64bit arch) or [msys2-base-i686-[date].tar.xz](http://sourceforge.net/projects/msys2/files/Base/i686/)(for 32bita arch)
+  2. Download [msys2-base-x86_64-[date].tar.xz](http://sourceforge.net/projects/msys2/files/Base/x86_64/)(for 64bit arch) or [msys2-base-i686-[date].tar.xz](http://sourceforge.net/projects/msys2/files/Base/i686/)(for 32bit arch)
   2. Rename ``msys2.tar.xz``
   3. Download [7za920.zip](http://downloads.sourceforge.net/sevenzip/7za920.zip)
   4. Put in the same place as ``FirstAutomatedBld.vbs``
