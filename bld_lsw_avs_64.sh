@@ -4,18 +4,18 @@ echo "You MUST launch MSYS2 using mingw64_shell.bat"
 echo "OR set the PROCESS environment variable: MSYSTEM , to 'MINGW64', prior launching mintty.exe"
 exit
 fi
-if [ -f "C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\Tools\vsvars32.bat" ]; then
+if [ -f "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\VsDevCmd.bat" ]; then
+    vspath="C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\VsDevCmd.bat"
+	toolset="14"
+elif [ -f "C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\Tools\vsvars32.bat" ]; then
     vspath="C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\Tools\vsvars32.bat"
 	toolset="12"
-elif [ -f "C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\Tools\vsvars32.bat" ]; then
-    vspath="C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\Tools\vsvars32.bat"
-	toolset="11"
+elif [ -f "C:\Program Files\Microsoft Visual Studio 14.0\Common7\Tools\vsvars32.bat" ]; then
+    vspath="C:\Program Files\Microsoft Visual Studio 14.0\Common7\Tools\vsvars32.bat"
+	toolset="14"
 elif [ -f "C:\Program Files\Microsoft Visual Studio 12.0\Common7\Tools\vsvars32.bat" ]; then
     vspath="C:\Program Files\Microsoft Visual Studio 12.0\Common7\Tools\vsvars32.bat"
 	toolset="12"
-elif [ -f "C:\Program Files\Microsoft Visual Studio 11.0\Common7\Tools\vsvars32.bat" ]; then
-    vspath="C:\Program Files\Microsoft Visual Studio 11.0\Common7\Tools\vsvars32.bat"
-	toolset="11"
 else
 	exit
 fi

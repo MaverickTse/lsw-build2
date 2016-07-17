@@ -1,5 +1,3 @@
-## For LSW-AviSynth Plugin, please see WIKI page for details
-
 # lsw-build2(TDM)
 MSYS2 Build scripts for building [__L-Smash__](https://github.com/l-smash/l-smash) and [__L-Smash Works__](https://github.com/VFR-maniac/L-SMASH-Works/tree/master/AviUtl). 
 
@@ -25,9 +23,9 @@ Use the **Download Zip** button on the right of GitHub page.
   5. Go to watch 2 episodes of animation...(On Core-i7, building both 32 and 64 bit binaries takes around 30min)
   6. It should popup a dialog showing the time taken to build
   7. Close the dialog, and get your packages in _MSYS2ROOT_\ReadyToUse32 and _MSYS2ROOT_\ReadyToUse64
-  8. **P.S.:** _The AviSynth plugin will only be built if you have either VS2012 or VS2013 installed_
-  9. **P.S.:** _32bit and 64bit FFmpeg.exe can be found inside `msys64/mingw32/bin` and `msys64/mingw64/bin`, respectively.
+  8. **P.S.:** _32bit and 64bit FFmpeg.exe can be found inside `msys64/mingw32/bin` and `msys64/mingw64/bin`, respectively.
   
+~~**P.S.:** _The AviSynth plugin will only be built if you have either VS2013 or VS2015 installed_~~ [In order to build the AviSynth plugin, ffmpeg, it is one of dependency library, shold be compiled on Visual Studio](https://github.com/VFR-maniac/L-SMASH-Works/commit/71859e2428c1d8cb7ed44dd2121ed95be9a8a233), **so that we wiil not support. Please see [WIKI page](https://github.com/MaverickTse/lsw-build2/wiki/04-Building-LSW-for-Avisynth) for details**
 
 ### If the above fails...
 
@@ -39,30 +37,30 @@ Use the **Download Zip** button on the right of GitHub page.
   5. Double-Click on ``FirstAutomatedBld.vbs``
   6. When a script still also fails in this, try "Usage Guide (Manual)". And please file an  [Issue](https://github.com/MaverickTse/lsw-build2/issues).
   
-[VS2013 Community Edition Info](https://www.visualstudio.com/en-us/news/vs2013-community-vs.aspx)
-  
-   
-  
   
 ## Usage Guide (Manual)
   1. Install [MSYS2](http://sourceforge.net/projects/msys2/)
   2. First-time startup using **msys2_shell.bat**
   3. Close MSYS2
   4. Copy the script files to _MSYS2ROOT_/home/_UserName_/
-  5. Run **msys2_shell.bat**
+  5. Run **msys2_shell.cmd**
   6. `./coreupdate.sh` **Restart MSYS2 when finished**
   7. `./inst_base.sh` Exit MSYS2 when finished
-  8. Run **mingw32_shell.bat** for 32bit target, **mingw64_shell.bat** for 64bit target
-  9. `./buildmypkg.sh` or `./buildmypkg_64.sh`
-  10. If you have VS2010/2012/2013 and want to build LSW for AviSynth, run `./bld_lsw_avs.sh` or `./bld_lsw_avs_64.sh`
-  11. Retrieve your package at `_MSYS2ROOT_/ReadyToUse32` or `_MSYS2ROOT_/ReadyToUse64`
+  8. Press and hold the Shift key and right click on a folder where contain ``msys2_shell.cmd``, and click ``Open Command Window Here``.
+  9. Run **call msys2\_shell.cmd -mingw32** for 32bit target, **call msys2_shell.cmd -mingw64** for 64bit target
+  10. `./buildmypkg.sh` or `./buildmypkg_64.sh`
+  11. ~~If you have VS2013/2015 and want to build LSW for AviSynth, run `./bld_lsw_avs.sh` or `./bld_lsw_avs_64.sh`~~
+  12. Retrieve your package at `_MSYS2ROOT_/ReadyToUse32` or `_MSYS2ROOT_/ReadyToUse64`
   
 ## Caution
-**DO NOT RUN** `pacman -Syu` without first running `./coreupdate.sh` and **restarting MSYS2!**
+~~DO NOT RUN `pacman -Syu` without first running `./coreupdate.sh` and restarting MSYS2!~~
 
-P.S. recent versions of MSYS2 already comes with the `update-core` command. `coreupdate.sh` now just calls the internal command.
+~~P.S. recent versions of MSYS2 already comes with the `update-core` command. `coreupdate.sh` now just calls the internal command.~~
+
+P.S. recent version of MSYS2 has `pacman -Syuu` command. `coreupdate.sh` now just calls that.
 
 ## How to Rebuild
-  1. Run **mingw32_shell.bat** for 32bit target, **mingw64_shell.bat** for 64bit target
-  2. `./buildmypkg.sh` or `./buildmypkg_64.sh`
+  1. Press and hold the Shift key and right click on a folder where contain ``msys2_shell.cmd``, and click ``Open Command Window Here``.
+  2. Run **call msys2\_shell.cmd -mingw32** for 32bit target, **call msys2_shell.cmd -mingw64** for 64bit target
+  3. `./buildmypkg.sh` or `./buildmypkg_64.sh`
   
