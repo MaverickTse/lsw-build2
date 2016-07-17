@@ -1,0 +1,9 @@
+license.txt
+readme.txt
+*.html
+*.chm
+*.exe
+*.tar.xz
+*.zip
+msys64/
+
