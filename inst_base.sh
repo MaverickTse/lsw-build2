@@ -114,24 +114,7 @@ rm -r -d TDM
 
 
 #Install Cmake
-cd ~
-if [ ! -d cmake ]; then
-mkdir cmake
-fi
-cd cmake
-wget https://cmake.org/download/ -O cmdlpage.html 
-#domain changed in 2015 October
-
-#cmake_url=$(grep -m 1 "cmake-[0-9.-]*win32-x86.zip" cmdlpage.html | sed -r 's/.*(http.*zip)">.*/\1/')
-cmake_url=$(grep 'win32-x86.zip' cmdlpage.html | grep -v 'rc' | head -n1 | sed -r 's/(^.+href=")(.*zip)(".*)/https:\/\/cmake.org\2/')
-#cmake_ver=$(grep -m 1 "cmake-[0-9.-]*win32-x86.zip" cmdlpage.html | sed -r 's/.*(http.*zip)">.*/\1/' | sed -r 's_.*/(cmake.*).zip_\1_')
-cmake_ver=$(grep 'win32-x86.zip' cmdlpage.html| grep -v 'rc' | head -n1 | sed -r 's/(^.+href=")(.+?cmake-)(.+?)(-win32-x86.zip)(".*)/\3/')
-echo "Installing CMake version: " $cmake_ver
-wget $cmake_url -O cmake.zip
-7z x cmake.zip
-rsync -a cmake-$cmake_ver-win32-x86/ /usr/
-cd ~
-rm -r -d cmake
+./inst_cmake.sh
 
 #Mingw32 fixes
 #cd /mingw32/bin/
