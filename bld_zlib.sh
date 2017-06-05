@@ -8,9 +8,9 @@ if [ ! -d zlib ]; then
     mkdir zlib
 fi
 cd ~/zlib
-if [ ! -f zlib-1.2.8.tar.gz ]; then
-    wget http://zlib.net/zlib-1.2.8.tar.gz -O zlib-1.2.8.tar.gz
-    tar zxvf zlib-1.2.8.tar.gz --strip-components=1
+if [ ! -f zlib-1.2.11.tar.gz ]; then
+    wget http://zlib.net/zlib-1.2.11.tar.gz -O zlib-1.2.11.tar.gz
+    tar zxvf zlib-1.2.11.tar.gz --strip-components=1
 	cd contrib
 	rm -r -d minizip
 	mkdir minizip
@@ -26,9 +26,9 @@ fi
 git pull -v --progress
 cd ../../
 cp ~/patches/mingw-w64-zlib/*.patch ./
-patch -p2 -t -N < 01-zlib-1.2.7-1-buildsys.mingw.patch
+patch -p1 -t -N < 01-zlib-1.2.11-1-buildsys.mingw.patch
 patch -p2 -t -N < 03-dont-put-sodir-into-L.mingw.patch
-patch -p2 -t -N < 013-fix-largefile-support.patch
+patch -p1 -t -N < 04-fix-largefile-support.patch
 cd contrib/minizip
 git apply ../../010-unzip-add-function-unzOpenBuffer.patch
 git apply ../../011-Add-no-undefined-to-link-to-enable-build-shared-vers.patch
