@@ -14,16 +14,20 @@ if [ ! -f zlib-1.2.11.tar.gz ]; then
 	cd contrib
 	rm -r -d minizip
 	mkdir minizip
-	
 fi
 cd ~/zlib/contrib/minizip
 if [ ! -d .git ]; then
     git clone -v --progress --config core.autocrlf=false git://github.com/nmoinvaz/minizip.git ./
 	if [ "$?" != "0" ]; then
 	  git clone -v --progress --config core.autocrlf=false https://github.com/nmoinvaz/minizip.git ./
-	fi  
+	fi
 fi
-git pull -v --progress
+if [ "7914ff3cb785778b3ba540ecb92334f8b4b8e6e5" != $(git log -n 1 --format=%H) ]; then
+	if [ "for_lsw_build2" != $(git rev-parse --abbrev-ref HEAD) ]; then
+		git fetch -v --progress
+	fi
+	git checkout -b for_lsw_build2 7914ff3c
+fi
 cd ../../
 cp ~/patches/mingw-w64-zlib/*.patch ./
 patch -p1 -t -N < 01-zlib-1.2.11-1-buildsys.mingw.patch
