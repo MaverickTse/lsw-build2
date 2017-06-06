@@ -26,7 +26,7 @@ cd ff64
 
 ~/ffmpeg/configure --prefix="/mingw64" --target-os=mingw32\
   --extra-cflags="-fexcess-precision=fast -I/mingw64/include/openjpeg-1.5" \
-  --enable-static --enable-avresample --enable-memalign-hack \
+  --enable-static --enable-avresample \
   --enable-pthreads --enable-runtime-cpudetect --enable-gpl \
   --enable-version3 --enable-libopus --enable-libopenjpeg \
   --enable-avisynth --disable-doc --disable-debug \
