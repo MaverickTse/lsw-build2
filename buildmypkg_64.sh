@@ -4,6 +4,9 @@ echo "You MUST launch MSYS2 using mingw64_shell.bat"
 echo "OR set the PROCESS environment variable: MSYSTEM , to 'MINGW64', prior launching mintty.exe"
 exit
 else
+echo -e "\E[30;42m Updating cmake\E[0m"
+tput sgr0 # Reset text attributes to normal without clear
+./inst_cmake.sh
 echo -e "\E[30;42m Downloading Patch files from MSYS2 Project(GitHub)\E[0m"
 tput sgr0 # Reset text attributes to normal without clear
 ./get_patch.sh

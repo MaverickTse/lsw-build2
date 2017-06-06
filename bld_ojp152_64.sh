@@ -13,10 +13,10 @@ if [ ! -f openjpeg-1.5.2.tar.gz ]; then
     tar zxvf openjpeg-1.5.2.tar.gz --strip-components=1
 	cp ~/patches/mingw-w64-openjpeg/*.patch ./
 	dos2unix libopenjpeg/opj_malloc.h
-	patch -p1 -t -N < cdecl.patch
     patch -p1 -t -N < openjpeg-1.5.1_tiff-pkgconfig.patch
     patch -p1 -t -N < mingw-install-pkgconfig-files.patch
     patch -p1 -t -N < versioned-dlls-mingw.patch
+	patch -p1 -t -N < openjpeg-1.5.2-stdcall-for-all-win.patch
 fi
 make clean
 THREAD=$(nproc)

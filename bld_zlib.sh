@@ -8,27 +8,31 @@ if [ ! -d zlib ]; then
     mkdir zlib
 fi
 cd ~/zlib
-if [ ! -f zlib-1.2.8.tar.gz ]; then
-    wget http://zlib.net/zlib-1.2.8.tar.gz -O zlib-1.2.8.tar.gz
-    tar zxvf zlib-1.2.8.tar.gz --strip-components=1
+if [ ! -f zlib-1.2.11.tar.gz ]; then
+    wget http://zlib.net/zlib-1.2.11.tar.gz -O zlib-1.2.11.tar.gz
+    tar zxvf zlib-1.2.11.tar.gz --strip-components=1
 	cd contrib
 	rm -r -d minizip
 	mkdir minizip
-	
 fi
 cd ~/zlib/contrib/minizip
 if [ ! -d .git ]; then
     git clone -v --progress --config core.autocrlf=false git://github.com/nmoinvaz/minizip.git ./
 	if [ "$?" != "0" ]; then
 	  git clone -v --progress --config core.autocrlf=false https://github.com/nmoinvaz/minizip.git ./
-	fi  
+	fi
 fi
-git pull -v --progress
+if [ "7914ff3cb785778b3ba540ecb92334f8b4b8e6e5" != $(git log -n 1 --format=%H) ]; then
+	if [ "for_lsw_build2" != $(git rev-parse --abbrev-ref HEAD) ]; then
+		git fetch -v --progress
+	fi
+	git checkout -b for_lsw_build2 7914ff3c
+fi
 cd ../../
 cp ~/patches/mingw-w64-zlib/*.patch ./
-patch -p2 -t -N < 01-zlib-1.2.7-1-buildsys.mingw.patch
+patch -p1 -t -N < 01-zlib-1.2.11-1-buildsys.mingw.patch
 patch -p2 -t -N < 03-dont-put-sodir-into-L.mingw.patch
-patch -p2 -t -N < 013-fix-largefile-support.patch
+patch -p1 -t -N < 04-fix-largefile-support.patch
 cd contrib/minizip
 git apply ../../010-unzip-add-function-unzOpenBuffer.patch
 git apply ../../011-Add-no-undefined-to-link-to-enable-build-shared-vers.patch

@@ -15,8 +15,6 @@ if [ ! -d .git ]; then
 	fi
 fi
 git pull -v --progress
-cp ~/patches/mingw-w64-opus/*.patch ./
-patch -p1 -t -N < 0001-correctly-detect-alloca.mingw.patch
 autoreconf -fi
 ./configure --prefix="/mingw64" --enable-static --disable-shared --enable-custom-modes
 make clean
